@@ -4,9 +4,26 @@
 <br>
 <br>
 <div align="center">
-<form action="/zone/search/" method="post">
+<form action="/rentals/search/" method="post">
 {% csrf_token %}
 Search Rentals:<br>
 <textarea name="adtitle" rows="1" cols="50"></textarea></br>
 <input type="submit" value="Submit">
 </form>
+</div>
+<div align="left">
+<form>
+<input type="radio" name="indibizfilter" value="Individual">Individual<br>
+<input type="radio" name="indibizfilter" value="Business">Business
+</form>
+</div>
+<p>Choose Categories</p>
+<form action="">
+<select name="categories">
+<option value="Adventure">Adventure</option>
+<option value="Household">Household</option>
+<option value="Sports">Sports</option>
+<option value="Tools">Tools</option>
+</select>
+</form>
+
