@@ -1,0 +1,12 @@
+<h1>Welcome to home page</h1>
+<div align="right"><a href="http://localhost:5000/rental/requestad/">Request</a>&nbsp&nbsp&nbsp<a href="http://localhost:5000/rental/rentoutad/">Post</a>&nbsp&nbsp&nbsp<a href="http://localhost:5000/rental/itemx/">ItemX</a>&nbsp&nbsp&nbsp<a href="http://localhost:5000/rental/aboutus/">WhyUs?</a>&nbsp&nbsp&nbsp</div> 
+<hr>
+<br>
+<br>
+<div align="center">
+<form action="/zone/search/" method="post">
+{% csrf_token %}
+Search Rentals:<br>
+<textarea name="adtitle" rows="1" cols="50"></textarea></br>
+<input type="submit" value="Submit">
+</form>

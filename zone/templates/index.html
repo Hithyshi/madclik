@@ -1,17 +1,15 @@
-{% load staticfiles %}
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>NeutralBay</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="{% static 'css/style.css'%}" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="{% static 'css/coin-slider.css'%}" />
-<script type="text/javascript" href="{% static 'js/cufon-yui.js'%}"></script>
-<script type="text/javascript" src="{% static 'js/cufon-times.js'%}"></script>
-<script type="text/javascript" src="{% static 'js/jquery-1.4.2.min.js'%}"></script>
-<script type="text/javascript" src="{% static 'js/script.js'%}"></script>
-<script type="text/javascript" src="{% static 'js/coin-slider.min.js'%}"></script>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/coin-slider.css" />
+<script type="text/javascript" src="js/cufon-yui.js"></script>
+<script type="text/javascript" src="js/cufon-times.js"></script>
+<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="js/coin-slider.min.js"></script>
 </head>
 <body>
 <div class="main">
@@ -37,14 +35,11 @@
 		<div align=center>
              <div class="sidebar">
         <div class="searchform">
-          <form id="formsearch" name="formsearch" method="post" action="/zone/search/">
-            {% csrf_token %}
+          <form id="formsearch" name="formsearch" method="post" action="#">
             <span>
-            <input name="adtitle" class="editbox_search" id="editbox_search" maxlength="80" value="Search our ste:" type="text" />
+            <input name="editbox_search" class="editbox_search" id="editbox_search" maxlength="80" value="Search our ste:" type="text" />
             </span>
-
-
-            <input name="search-buttone" value="submit"  src="{% static 'images/search.gif'%}" class="button_search" type="submit" />
+            <input name="button_search" src="images/search.gif" class="button_search" type="image" />
           </form>
 		  	              
       <div class="clr"></div>			
