@@ -22,8 +22,14 @@ Search Rentals:<br>
 <div align="left">
 <form id="frm1" method="POST" action="/zone/search/filter/">
 {% csrf_token %}
-<input type="radio" name="indibizfilter" value="Individual" onclick="formSubmit1()">Individual<br>
-<input type="radio" name="indibizfilter" value="Business" onclick="formSubmit1()">Business<br>
+{% if filter_radio == "Individual" %}
+  <input type="radio" name="indibizfilter" value="Individual" onclick="formSubmit1()" checked>Individual<br>
+  <input type="radio" name="indibizfilter" value="Business" onclick="formSubmit1()">Business<br>
+{% endif %}
+{% if filter_radio == "Business" %}
+  <input type="radio" name="indibizfilter" value="Individual" onclick="formSubmit1()">Individual<br>
+  <input type="radio" name="indibizfilter" value="Business" onclick="formSubmit1()" checked>Business<br>
+{% endif %}
 </form>
 </div>
 <p>Choose Categories</p>
@@ -37,11 +43,8 @@ Search Rentals:<br>
 </form>
 </form>
 <div align=center>
-{% for a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p in search_res %}
+{% for a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p in filter_result %}
     {{ a }} <br> {{ b }} <br> {{ c }} <br> {{ d }} <br> {{ e }} <br> {{ f }} <br> {{ g }} <br> {{ h }} <br> {{ i }} <br> {{ j }} <br> {{ k }} <br> {{ l }} <br> {{ m }} <br> {{ n }} <br> {{ o }} <br> {{ p }} <br>
 {% endfor %}
 </div>
-<!-- <iframe frameborder="0" scrolling="yes" width="130" height="198" -->
-<!--  src="/zone/search/testing/" name="imgbox" id="imgbox">  -->
-<!--  <p>iframes are not supported by your browser.</p>  -->
-<!-- </iframe><br />  -->
+

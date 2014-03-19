@@ -1,0 +1,435 @@
+{% load staticfiles %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>NeutralBay | Support</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="{% static 'css/style.css'%}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/coin-slider.css'%}" />
+<script type="text/javascript" src="{% static 'js/cufon-yui.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/cufon-times.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/jquery-1.4.2.min.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/script.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/coin-slider.min.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/validateform.js'%}">
+</script>
+</head>
+<body>
+<div class="main">
+  <div class="header">
+    <div class="header_resize">
+      <div class="logo">
+        <h1><a href="index.html">Project<span>mayhem</span> <small>Company Slogan Here</small></a></h1>
+      </div>
+      <div class="menu_nav">
+        <ul>
+          <li><a href="index.html"><span>Why us</span></a></li>
+          <li class="active"><a href="support.html"><span>post rent</span></a></li>
+          <li><a href="about.html"><span>request rent</span></a></li>
+          <li><a href="blog.html"><span>item x</span></a></li>
+          <li><a href="contact.html"><span>reach us</span></a></li>
+        </ul>
+      </div>
+	  
+	  <br>
+	  <form name="myForm" onsubmit="return validateForm()" method="post" action="/zone/postsuccess/">
+          {% csrf_token %}
+	  <div align=center>
+     <div id="section1" class="section">
+    <div id="column1" class="column ui-sortable">
+      <div style="FILTER: " id="item16" class="fb-item fb-100-item-column">
+        <div class="fb-header fb-item-alignment-center">
+          <h2 style="DISPLAY: inline">
+            PRODUCT information
+          </h2>
+        </div>
+      </div>
+	  <br>
+      <div style="FILTER: " id="item1" class="fb-item fb-100-item-column">
+        <div class="fb-grouplabel">
+          <label style="DISPLAY: inline" id="item1_label_0">Chose a Category </label>
+		  <select id="myList" name="select1" onchange="favBrowser()">
+  <option></option>
+  <option>Books</option>
+<option>Sports</option>
+<option>Tools and Equipments</option>
+<option>Electronics</option>
+<option>Fitness</option>
+<option>Kitchen and Home Appliances</option>
+<option>Clothing and Costumes </option>
+<option>Camping and Adventure gears</option>
+<option>Vehicles</option>
+<option>Event and wedding supplies</option>
+<option>Garage and Garden</option>
+<option>Baby accessories and Toys</option>
+<option>Musical instruments</option>
+<option>Entertainment</option>
+<option>Furniture</option>
+<option>Office supplies</option>
+<option>Playgrounds</option>
+</select>
+        </div>
+             </div>
+			 <br>
+      <div style="FILTER: " id="item2" class="fb-item fb-100-item-column">
+        <div class="fb-grouplabel">
+          <label style="DISPLAY: inline" id="item2_label_0">Chose a sub Category</label>
+		  
+          <select id="item2_select_1" name="select2" data-hint="">
+            <option id="item2_0_option" value="Option 1" selected>
+              Option 1
+            </option>
+            <option id="item2_1_option" value="Option 2">
+              Option 2
+            </option>
+            <option id="item2_2_option" value="Option 3">
+              Option 3
+            </option>
+          </select>
+       
+        </div>
+        
+      </div>
+	  <br>
+      <div style="FILTER: " id="item3" class="fb-item fb-100-item-column">
+       Product Title *
+       <input type="text" name="prod_name" value=""/> <span class="error"> </span>
+
+        </div>
+        
+      </div>
+    <br>
+        <div>
+		  Description *
+		  <br>
+          <textarea name="description" cols="40" rows="5" ></textarea> 
+
+        </div>
+<br>
+<!--      <div id="item7" class="fb-item fb-100-item-column">  -->
+<!--        <div class="fb-grouplabel">  -->
+<!--          <label id="item7_label_0">Select a file</label>  -->
+<!--          <input id="item7_file_1" type="file" name="file7" data-hint="" />  -->
+<!--        </div>  -->
+		<br>
+      </div>
+      <div style="FILTER: " id="item9" class="fb-item fb-100-item-column">
+        <div class="fb-grouplabel">
+          <label style="DISPLAY: inline" id="item9_label_0">Price</label>
+		  <input id="item9_text_1" maxlength="100" name="text9" placeholder="" autocomplete="off"
+          data-hint="" required type="text" />
+		  <label style="DISPLAY: inline" id="item9_label_0">Per</label>
+		  
+          <select id="item10_select_1" name="select10" data-hint="">
+            <option id="item10_0_option" value="Option 1" selected>
+              Hour
+            </option>
+			<option id="item10_0_option" value="Option 1" selected>
+              Day
+            </option>
+            <option id="item10_1_option" value="Option 2">
+              Week
+            </option>
+            <option id="item10_2_option" value="Option 3">
+              Month
+            </option>
+          </select>
+        
+        </div>
+               
+      </div>
+            
+      </div>
+	  <br>
+      <div style="FILTER: " id="item13" class="fb-item fb-100-item-column">
+        <div class="fb-grouplabel">
+          <label style="DISPLAY: inline" id="item13_label_0">Security Deposit </label>
+                  <input id="item13_text_1" size=5 maxlength="254" name="text13" placeholder="" autocomplete="off" data-hint="" type="text" />
+        </div>
+      </div>
+	  <br>
+	  <div>
+		  Terms and condition *
+		  <br>
+          <textarea name="tandc" cols="40" rows="5" ></textarea> 
+
+        </div>
+		<br>
+      <div style="FILTER: " id="item17" class="fb-item fb-100-item-column">
+        <div class="fb-header fb-item-alignment-center">
+          <h2 style="DISPLAY: inline">
+            Renter Details
+          </h2>
+        </div>
+      </div>
+	  <br>
+      <div id="item20" class="fb-item fb-100-item-column">
+        <div class="fb-grouplabel">
+          <label style="DISPLAY: inline" id="item20_label_0">Renter Type </label>
+          <select id="item20_select_1" name="select20" data-hint="">
+            <option id="item20_0_option" value="Individual" selected>
+              Individual
+            </option>
+            <option id="item20_1_option" value="Business">
+              Business
+            </option>
+			 </select>
+        </div>
+      </div>
+	  <br>
+      <div id="item21" class="fb-item fb-100-item-column">
+        <div class="fb-grouplabel">
+          <label style="DISPLAY: inline" id="item21_label_0">Renter Name</label>
+               <input id="item21_text_1" maxlength="254" name="text21" placeholder=""
+          autocomplete="off" data-hint="" type="text" />
+        </div>
+      </div>
+	  <br>
+      <div id="item22" class="fb-item fb-100-item-column">
+        <div class="fb-grouplabel">
+          <label id="item22_label_0">Email</label>
+        
+          <input id="item22_email_1" class="" maxlength="254" name="email22" placeholder="you@domain.com"
+          autocomplete="off" data-hint="" type="email" />
+        </div>
+      </div>
+	  <br>
+      <div id="item23" class="fb-item fb-100-item-column">
+        <div class="fb-grouplabel">
+          <label style="DISPLAY: inline" id="item23_label_0">Mobile Number</label>
+                 <input id="item23_tel_1" name="tel23" data-hint="" type="tel" />
+        </div>
+      </div>
+	  <br>
+      <div id="item24" class="fb-item fb-100-item-column">
+        <div class="fb-grouplabel">
+          <label style="DISPLAY: inline" id="item24_label_0">State </label>
+                  <select id="item24_select_1" name="select24" data-hint="">
+            <option id="item24_0_option" value="Option 1" selected>
+              karnataka
+            </option>
+            
+          </select>
+        </div>
+      </div>
+	  <br>
+      <div id="item25" class="fb-item fb-100-item-column">
+        <div class="fb-grouplabel">
+          <label style="DISPLAY: inline" id="item25_label_0">City </label>
+                  <select id="item25_select_1" name="select25" data-hint="">
+            <option id="item25_0_option" value="Option 1" selected>
+              Bangalore
+            </option>
+            
+          </select>
+        </div>
+      </div>  
+	  <br>
+      <div id="item26" class="fb-item fb-100-item-column">
+        <div class="fb-grouplabel">
+          <label style="DISPLAY: inline" id="item26_label_0">Locality </label>
+                  <select id="item26_select_1" name="select26" data-hint="">
+           <option></option>
+		    <option>	Agaram	</option>
+<option>	Airport	</option>
+<option>	Anand Nagar	</option>
+<option>	Anepalya	</option>
+<option>	Ashok Nagar	</option>
+<option>	Attiguppe	</option>
+<option>	Austin Town	</option>
+<option>	Avenue Road	</option>
+<option>	Ayappa Garden	</option>
+<option>	B.P.Wadia Road	</option>
+<option>	Banasavadi	</option>
+<option>	Banashankari	</option>
+<option>	Bannerghatta Road	</option>
+<option>	Bapuji Nagar	</option>
+<option>	Basavanagudi	</option>
+<option>	Basaveshwara Nagar	</option>
+<option>	Bashyam Nagar	</option>
+<option>	Bellandur	</option>
+<option>	Benson Town	</option>
+<option>	Bidadi	</option>
+<option>	Bommanahalli	</option>
+<option>	Brigade Road	</option>
+<option>	Brookefield	</option>
+<option>	Btm Layout	</option>
+<option>	C V Raman Nagar	</option>
+<option>	Carmelaram Road	</option>
+<option>	Central Bengaluru	</option>
+<option>	Chamrajpet	</option>
+<option>	Channasandra	</option>
+<option>	Chikkabanavara Lake	</option>
+<option>	Church Street	</option>
+<option>	City Centre	</option>
+<option>	Cooke Town	</option>
+<option>	Cottonpet	</option>
+<option>	Cox Town	</option>
+<option>	Crescent Road	</option>
+<option>	Cunningham Road, City	</option>
+<option>	Dasarahalli	</option>
+<option>	Devanahalli	</option>
+<option>	Devasandra Lake	</option>
+<option>	Diamond District	</option>
+<option>	Dickenson Road	</option>
+<option>	Dlf Township	</option>
+<option>	Doddaballapur Rd.	</option>
+<option>	Domlur	</option>
+<option>	Electronic City	</option>
+<option>	Gandhi Nagar	</option>
+<option>	Ganga Nagar	</option>
+<option>	GM Palya	</option>
+<option>	Govindapura	</option>
+<option>	Guttahalli	</option>
+<option>	H.B.R. Layout	</option>
+<option>	H.S.R Layout	</option>
+<option>	HAL 2nd Stage	</option>
+<option>	Hanumanth Nagar	</option>
+<option>	Hebbal	</option>
+<option>	Hegde Nagar	</option>
+<option>	Hennur Main Road	</option>
+<option>	Hessarghatta Road	</option>
+<option>	High Grounds	</option>
+<option>	Hormavu	</option>
+<option>	Hosa Road	</option>
+<option>	Hosakerehalli	</option>
+<option>	Hoskote	</option>
+<option>	Hosur Road	</option>
+<option>	Hunsur Road	</option>
+<option>	Indiranagar	</option>
+<option>	Indlawadi Pura	</option>
+<option>	Infantry Road	</option>
+<option>	Isro Layout	</option>
+<option>	ITPL	</option>
+<option>	J.P. Nagar	</option>
+<option>	Jalahalli	</option>
+<option>	Jayamahal Extn	</option>
+<option>	Jayamahal Road	</option>
+<option>	Jayanagar	</option>
+<option>	Jaylakshmi Puram	</option>
+<option>	Jogapalya	</option>
+<option>	K R Puram	</option>
+<option>	K. G. Road	</option>
+<option>	K.d. Road	</option>
+<option>	Kalkere	</option>
+<option>	Kalyan Nagar	</option>
+<option>	Kammanahalli	</option>
+<option>	Kanakapura Road	</option>
+<option>	Kasavanahalli	</option>
+<option>	Kasturi Nagar	</option>
+<option>	Kempapur Agrahara	</option>
+<option>	Kempe Gowda Road	</option>
+<option>	Koramangala	</option>
+<option>	Kudlu Gate	</option>
+<option>	Kumaraswamy Layout	</option>
+<option>	Kundalahalli	</option>
+<option>	Lakkasandra	</option>
+<option>	Lalbagh Rd.	</option>
+<option>	Langford Town	</option>
+<option>	Lavelle Road	</option>
+<option>	LB Shastri Nagar	</option>
+<option>	Lottegollahalli	</option>
+<option>	M. G. Road	</option>
+<option>	Madivala	</option>
+<option>	Magrath Road	</option>
+<option>	Mahadevpura	</option>
+<option>	Mahalakshmipuram	</option>
+<option>	Mahatma Gandhi Road	</option>
+<option>	Majestic	</option>
+<option>	Malleswaram	</option>
+<option>	Marathahalli	</option>
+<option>	Mathikere	</option>
+<option>	Milk Colony	</option>
+<option>	Millers Road	</option>
+<option>	Minerva Circle	</option>
+<option>	Mysore Road	</option>
+<option>	Nagavara	</option>
+<option>	Nagvarpalya Main Road	</option>
+<option>	Nandi Durg Road	</option>
+<option>	Old Airport Road	</option>
+<option>	Outer Ring Road	</option>
+<option>	Padmanabhanagar	</option>
+<option>	Palace Road	</option>
+<option>	Peenya	</option>
+<option>	R.T. Nagar	</option>
+<option>	Race Course Road	</option>
+<option>	Raj Bhavan Road	</option>
+<option>	Raja Rajeshwari Nagar	</option>
+<option>	RajajiNagar	</option>
+<option>	Rajvi Nagar	</option>
+<option>	Ram Krishna Nagar	</option>
+<option>	Ram Murthy Nagar	</option>
+<option>	Ramamurthy Nagar	</option>
+<option>	Residency Road	</option>
+<option>	Richmond Road	</option>
+<option>	RMV Extension	</option>
+<option>	S.R. Nagar	</option>
+<option>	Sadahalli	</option>
+<option>	Sadashiv Nagar	</option>
+<option>	Sahakara Nagar	</option>
+<option>	Sampangirama Nagar	</option>
+<option>	Sanjay Nagar	</option>
+<option>	Sankey Road	</option>
+<option>	Sarakki Main Road.	</option>
+<option>	Sarjapur	</option>
+<option>	Sarjapur Road	</option>
+<option>	Seshadri Road	</option>
+<option>	Seshadripuram	</option>
+<option>	Shampura	</option>
+<option>	Shrirampuram	</option>
+<option>	Siddapura Rd.	</option>
+<option>	Silk Board Junction	</option>
+<option>	Sivan Chetty Gardens	</option>
+<option>	Sompura Gate	</option>
+<option>	Sri Ram Puram	</option>
+<option>	St. Mark's Road	</option>
+<option>	Thanisandra Road	</option>
+<option>	Thaverekere Road	</option>
+<option>	Tumkur Road	</option>
+<option>	Ulsoor	</option>
+<option>	Uttarahalli Main Road	</option>
+<option>	V.v. Mahal	</option>
+<option>	Varthur	</option>
+<option>	Vasanth Nagar	</option>
+<option>	Vidyaranyapura	</option>
+<option>	Vijayanagar	</option>
+<option>	Vittal Mallya Road	</option>
+<option>	Vivek Nagar	</option>
+<option>	Whitefield	</option>
+<option>	Wilson Garden	</option>
+
+          </select>
+        </div>
+      </div>
+	  <br>
+	       <div style="FILTER: " id="item27" class="fb-item fb-100-item-column fb-one-column">
+        <div class="fb-grouplabel">
+          <label style="DISPLAY: none" id="item27_label_0"></label>
+        </div>
+        <div class="fb-radio">
+          <label id="item27_0_label"><input id="item27_0_radio" checked type="radio" name="radio27" value="AGREE TO THE TERMS AND CONDITONS" /><span id="item27_0_span" class="fb-fieldlabel">AGREE TO THE TERMS AND CONDITONS</span></label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div align=center>
+  <div style="DISPLAY: none; CURSOR: default" id="fb-captcha_control" class="fb-captcha fb-item-alignment-center">
+    <img src="../../../AppData/Local/Temp/FormBuilder/editordata/images/recaptchawhite.png"
+    />
+  </div>
+  <div aling=centerstyle="MIN-HEIGHT: 1px" id="fb-submit-button-div" class="fb-item-alignment-left fb-footer">
+    
+	
+
+    <input id="fb-submit-button" class="fb-button-special" type="submit" data-regular="url('../../../AppData/Local/Temp/FormBuilder/theme/default/images/btn_submit.png')"
+    value="Submit" />
+</form>
+  </div>
+  </div>
+  </div>
+  <br>
+  <br>
+</body>
+</html>
