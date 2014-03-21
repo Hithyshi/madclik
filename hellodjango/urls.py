@@ -5,7 +5,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^zone/$', 'zone.views.homepage', name='homepage'),
+    url(r'^$', 'zone.views.homepage', name='homepage'),
     url(r'^zone/postad/$', 'zone.views.postadv', name='postadv'),
     url(r'^zone/search/$', 'zone.views.homesearch', name='homesearch'),
     url(r'^zone/postsuccess/$', 'zone.views.postsuccess', name='postsuccess'),
