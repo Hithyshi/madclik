@@ -20,7 +20,7 @@ Search Rentals:<br>
 </form>
 </div>
 <div align="left">
-<form id="frm1" method="POST" action="/zone/search/filter/">
+<form id="frm1" method="POST" action="/zone/search/{{search_txt}}/filter/">
 {% csrf_token %}
 <input type="radio" name="indibizfilter" value="Individual" onclick="formSubmit1()">Individual<br>
 <input type="radio" name="indibizfilter" value="Business" onclick="formSubmit1()">Business<br>

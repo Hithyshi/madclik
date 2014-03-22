@@ -9,11 +9,19 @@ def homepage(request):
   return render_to_response("homepage.html",context_instance=RequestContext(request)) 
 
 def homesearch(request):
-  search_txt = request.POST["adtitle"]
-  print search_txt
-  search_res = CustomerAdvertise2.objects.values_list('item_cat', 'item_subcat', 'item_name', 'item_desc', 'item_price', 'item_price_per', 'item_sec_dep', 'item_tandc', 'item_owner_type', 'item_owner_name', 'item_owner_email', 'item_mobile_num', 'state', 'city', 'locality').filter(item_desc__contains=search_txt)
+  try:
+#  if request.META.HTTP_REFERER == "http://localhost:5000/zone/ or 
+    search_txt = request.POST["adtitle"]
+#  if search_txt:
+    print search_txt
+    search_res = CustomerAdvertise2.objects.values_list('item_cat', 'item_subcat', 'item_name', 'item_desc', 'item_price', 'item_price_per', 'item_sec_dep', 'item_tandc', 'item_owner_type', 'item_owner_name', 'item_owner_email', 'item_mobile_num', 'state', 'city', 'locality').filter(item_desc__contains=search_txt)
 #  res_list = list(search_res)
-  return render_to_response("searchhome.html", {"search_res":search_res}, context_instance=RequestContext(request))
+    return render_to_response("searchhome.html", {"search_res":search_res, "search_txt":search_txt}, context_instance=RequestContext(request))
+  except KeyError:
+#  else:
+    return HttpResponseRedirect("/zone/")
+    
+
 
 def postadv(request):
   return render_to_response("postform.html",context_instance=RequestContext(request))
@@ -27,10 +35,10 @@ def postsuccess(request):
   return HttpResponseRedirect("/zone/")
 #  return render_to_response("postsuccess.html", {"a":a, "b":b, "c":c}, context_instance=RequestContext(request))
 
-def searchfilter(request):
+def searchfilter(request, search_txt):
   filter_radio = request.POST["indibizfilter"]
-  filter_result = CustomerAdvertise2.objects.values_list('item_cat', 'item_subcat', 'item_name', 'item_desc', 'item_price', 'item_price_per', 'item_sec_dep', 'item_tandc', 'item_owner_type', 'item_owner_name', 'item_owner_email', 'item_mobile_num', 'state', 'city', 'locality').filter(item_owner_type__contains=filter_radio)
-  return render_to_response("filtersuccess.html", {"filter_result":filter_result, "filter_radio":filter_radio}, context_instance=RequestContext(request))
+  filter_result = CustomerAdvertise2.objects.values_list('item_cat', 'item_subcat', 'item_name', 'item_desc', 'item_price', 'item_price_per', 'item_sec_dep', 'item_tandc', 'item_owner_type', 'item_owner_name', 'item_owner_email', 'item_mobile_num', 'state', 'city', 'locality').filter(item_owner_type__contains=filter_radio, item_desc__contains=search_txt)
+  return render_to_response("filtersuccess.html", {"filter_result":filter_result, "filter_radio":filter_radio, "search_txt":search_txt}, context_instance=RequestContext(request))
 
 #def iframetesting(request):
 #  return render_to_response("index.html",context_instance=RequestContext(request))
