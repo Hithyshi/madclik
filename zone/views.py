@@ -19,7 +19,7 @@ def homesearch(request):
     return render_to_response("searchhome.html", {"search_res":search_res, "search_txt":search_txt}, context_instance=RequestContext(request))
   except KeyError:
 #  else:
-    return HttpResponseRedirect("/zone/")
+    return HttpResponseRedirect("/")
     
 
 
@@ -32,7 +32,7 @@ def postsuccess(request):
 #  c = request.POST["prod_name"]
   postitem = CustomerAdvertise2(item_cat=request.POST["select1"], item_subcat=request.POST["select2"], item_name=request.POST["prod_name"], item_desc=request.POST["description"], item_price=request.POST["text9"], item_price_per=request.POST["select10"], item_sec_dep=request.POST["text13"], item_tandc=request.POST["tandc"], item_owner_type=request.POST["select20"], item_owner_name=request.POST["text21"], item_owner_email=request.POST["email22"], item_mobile_num=request.POST["tel23"], state=request.POST["select24"], city=request.POST["select25"], locality=request.POST["select26"])
   postitem.save() 
-  return HttpResponseRedirect("/zone/")
+  return HttpResponseRedirect("/")
 #  return render_to_response("postsuccess.html", {"a":a, "b":b, "c":c}, context_instance=RequestContext(request))
 
 def searchfilter(request, search_txt):
