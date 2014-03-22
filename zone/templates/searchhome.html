@@ -37,11 +37,30 @@ Search Rentals:<br>
 </form>
 </form>
 <div align=center>
-{% for a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p in search_res %}
-    {{ a }} <br> {{ b }} <br> {{ c }} <br> {{ d }} <br> {{ e }} <br> {{ f }} <br> {{ g }} <br> {{ h }} <br> {{ i }} <br> {{ j }} <br> {{ k }} <br> {{ l }} <br> {{ m }} <br> {{ n }} <br> {{ o }} <br> {{ p }} <br>
-{% endfor %}
-</div>
+<!-- {% for a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q in search_res %} -->
+<!--    {{ a }} <br> {{ b }} <br> {{ c }} <br> {{ d }} <br> {{ e }} <br> {{ f }} <br> {{ g }} <br> {{ h }} <br> {{ i }} <br> {{ j }} <br> {{ k }} <br> {{ l }} <br> {{ m }} <br> {{ n }} <br> {{ o }} <br> {{ p }} <br> {{ q }} <br> -->
+<!-- {% endfor %} -->
+<!-- </div> -->
 <!-- <iframe frameborder="0" scrolling="yes" width="130" height="198" -->
 <!--  src="/zone/search/testing/" name="imgbox" id="imgbox">  -->
 <!--  <p>iframes are not supported by your browser.</p>  -->
 <!-- </iframe><br />  -->
+<br>
+<!-- {{ documents }} -->
+<!-- {{ b }} -->
+<!-- {{ documents }}  -->
+<!-- {{ temp1 }} -->
+{% for document in documents %}
+ <li><a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></li>
+{% endfor %}
+<div align=center>
+{% for a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r in temp1 %}
+    {{ a }} <br> {{ b }} <br> {{ c }} <br> {{ d }} <br> {{ e }} <br> {{ f }} <br> {{ g }} <br> {{ h }} <br> {{ i }} <br> {{ j }} <br> {{ k }} <br> {{ l }} <br> {{ m }} <br> {{ n }} <br> {{ o }} <br> {{ p }} <br> 
+
+  <br>
+  {% for document in q %}
+    <img src=/media/{{ document }} width="70" height="70">
+  
+  {% endfor %}  
+{% endfor %}
+</div>

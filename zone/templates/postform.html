@@ -33,7 +33,7 @@
       </div>
 	  
 	  <br>
-	  <form name="myForm" onsubmit="return validateForm()" method="post" action="/zone/postsuccess/">
+	  <form name="myForm" onsubmit="return validateForm()" enctype="multipart/form-data" method="post" action="/zone/postsuccess/">
           {% csrf_token %}
 	  <div align=center>
      <div id="section1" class="section">
@@ -402,6 +402,14 @@
           </select>
         </div>
       </div>
+          <br>
+          	<p>{{ form.non_field_errors }}</p>
+		<p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
+		<p>
+				{{ form.docfile.errors }}
+				{{ form.docfile }}
+		</p>
+		<p><input type="submit" value="Upload" /></p> 
 	  <br>
 	       <div style="FILTER: " id="item27" class="fb-item fb-100-item-column fb-one-column">
         <div class="fb-grouplabel">

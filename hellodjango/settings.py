@@ -19,6 +19,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'rq7-5w2#($uo#r#s86pbyk4v)kysgffdkspy^!ln*hlgt7_m+s'
 
+PROJECT_ROOT = os.path.realpath(os.path.dirname(__file__))
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -26,6 +28,8 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
+MEDIA_URL = '/media/'
 
 # Application definition
 
@@ -55,6 +59,17 @@ WSGI_APPLICATION = 'hellodjango.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
+"""
+DATABASES = {
+    'default': {
+        'ENGINE':'django.db.backends.mysql',
+        'NAME':'test',
+        'USER':'tutorialuser',
+        'PASSWORD':'tutorialuser',
+        'HOST':'',
+    }
+}
+"""
 DATABASES = {
     'default': {
         'ENGINE':'django.db.backends.mysql',
@@ -64,6 +79,7 @@ DATABASES = {
         'HOST':'us-cdbr-east-05.cleardb.net',
     }
 }
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
