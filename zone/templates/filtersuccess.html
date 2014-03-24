@@ -12,7 +12,7 @@ document.getElementById("frm1").submit();
 <br>
 <br>
 <div align="center">
-<form action="/rentals/search/" method="post">
+<form action="/zone/search/" method="post">
 {% csrf_token %}
 Search Rentals:<br>
 <textarea name="adtitle" rows="1" cols="50"></textarea></br>
@@ -42,9 +42,19 @@ Search Rentals:<br>
 </select>
 </form>
 </form>
+<!-- <div align=center> -->
+<!-- {% for a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p in filter_result %} -->
+<!--     {{ a }} <br> {{ b }} <br> {{ c }} <br> {{ d }} <br> {{ e }} <br> {{ f }} <br> {{ g }} <br> {{ h }} <br> {{ i }} <br> {{ j }} <br> {{ k }} <br> {{ l }} <br> {{ m }} <br> {{ n }} <br> {{ o }} <br> {{ p }} <br> -->
+<!-- {% endfor %} -->
+<!-- </div> -->
 <div align=center>
-{% for a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p in filter_result %}
+{% for a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r in temp2 %}
     {{ a }} <br> {{ b }} <br> {{ c }} <br> {{ d }} <br> {{ e }} <br> {{ f }} <br> {{ g }} <br> {{ h }} <br> {{ i }} <br> {{ j }} <br> {{ k }} <br> {{ l }} <br> {{ m }} <br> {{ n }} <br> {{ o }} <br> {{ p }} <br>
+
+  <br>
+  {% for document in q %}
+    <img src=/media/{{ document }} width="70" height="70">
+
+  {% endfor %}
 {% endfor %}
 </div>
-
