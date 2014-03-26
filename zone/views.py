@@ -7,7 +7,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-
+from django.db.models import Q
 #from zone.models import Document
 from zone.forms import DocumentForm
 # Create your views here.
@@ -20,7 +20,7 @@ def homesearch(request):
     search_txt = request.POST["adtitle"]
     print search_txt
 #    a = CustomerAdvertise2.objects.all()
-    search_res = CustomerAdvertise2.objects.values_list('id', 'item_cat', 'item_subcat', 'item_name', 'item_desc', 'item_price', 'item_price_per', 'item_sec_dep', 'item_tandc', 'item_owner_type', 'item_owner_name', 'item_owner_email', 'item_mobile_num', 'state', 'city', 'locality').filter(item_desc__contains=search_txt)
+    search_res = CustomerAdvertise2.objects.values_list('id', 'item_cat', 'item_subcat', 'item_name', 'item_desc', 'item_price', 'item_price_per', 'item_sec_dep', 'item_tandc', 'item_owner_type', 'item_owner_name', 'item_owner_email', 'item_mobile_num', 'state', 'city', 'locality').filter(Q(item_desc__contains=search_txt) | Q(item_name__contains=search_txt))
     temp1 = []
     for x in search_res:
 
@@ -72,9 +72,10 @@ def postsuccess(request):
     return HttpResponseRedirect("/")
 
 def searchfilter(request, search_txt):
-  try:  
+  try:
+#    if search_txt != '':  
     filter_radio = request.POST["indibizfilter"]
-    filter_result = CustomerAdvertise2.objects.values_list('id', 'item_cat', 'item_subcat', 'item_name', 'item_desc', 'item_price', 'item_price_per', 'item_sec_dep', 'item_tandc', 'item_owner_type', 'item_owner_name', 'item_owner_email', 'item_mobile_num', 'state', 'city', 'locality').filter(item_owner_type__contains=filter_radio, item_desc__contains=search_txt)
+    filter_result = CustomerAdvertise2.objects.values_list('id', 'item_cat', 'item_subcat', 'item_name', 'item_desc', 'item_price', 'item_price_per', 'item_sec_dep', 'item_tandc', 'item_owner_type', 'item_owner_name', 'item_owner_email', 'item_mobile_num', 'state', 'city', 'locality').filter(Q(item_owner_type__contains=filter_radio), Q(item_desc__contains=search_txt) | Q(item_name__contains=search_txt))
     
     temp2 = []
    
@@ -88,6 +89,8 @@ def searchfilter(request, search_txt):
 #    documents = Document.objects.values_list('docfile', 'item_id').filter(item_id__exact=13)
 #    return render_to_response("searchhome.html", {"search_res":search_res, "search_txt":search_txt, "temp1":temp1}, context_instance=RequestContext(request))
     return render_to_response("filtersuccess.html", {"filter_result":filter_result, "filter_radio":filter_radio, "search_txt":search_txt, "temp2":temp2}, context_instance=RequestContext(request))
+#    else:
+#      pass
   except KeyError:
 #  else:
     return HttpResponseRedirect("/")
