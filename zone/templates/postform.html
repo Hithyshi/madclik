@@ -403,13 +403,22 @@
         </div>
       </div>
           <br>
-          	<p>{{ form.non_field_errors }}</p>
-		<p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
-		<p>
-				{{ form.docfile.errors }}
-				{{ form.docfile }}
-		</p>
-		<p><input type="submit" value="submit" /></p> 
+          <!--	<p>{{ form.non_field_errors }}</p>   -->
+	  <!--	<p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p> -->
+	  <!--	<p> -->
+	  <!--			{{ form.docfile.errors }}  -->
+	  <!--			{{ form.docfile }}  -->
+	  <!-- 	</p>  -->
+       	<!--	<p><input type="submit" value="submit" /></p> -->
+            <div class="form">
+              <strong{{form.file.label}}</strong>
+              <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form.file}}<br/>
+                <input type="submit" value="Submit"/>
+              </form>
+            </div>    
+                 
 	  <br>
 	       <div style="FILTER: " id="item27" class="fb-item fb-100-item-column fb-one-column">
         <div class="fb-grouplabel">

@@ -1,86 +1,95 @@
 {% load staticfiles %}
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>Europe</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="{% static 'css/style.css'%}" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="{% static 'css/coin-slider.css'%}" />
-<script type="text/javascript" href="{% static 'js/cufon-yui.js'%}"></script>
-<script type="text/javascript" src="{% static 'js/cufon-times.js'%}"></script>
-<script type="text/javascript" src="{% static 'js/jquery-1.4.2.min.js'%}"></script>
-<script type="text/javascript" src="{% static 'js/script.js'%}"></script>
-<script type="text/javascript" src="{% static 'js/coin-slider.min.js'%}"></script>
-<script>
-/*
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-49162925-1', 'rent-estu.herokuapp.com/');
-  ga('send', 'pageview');
-*/
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-49162925-1']);
-_gaq.push(['_trackPageview']);
-
-(function() {
-var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-})()
-
-</script>
-
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>MadClik</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/style1.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/search.css' %}" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<div class="main">
-  <div class="header">
-    <div class="header_resize">
-      <div class="logo">
-        <h1>PROJECT<span> mayhem</span> <small>Company Slogan Here</small></a></h1>
-      </div>
-      <div class="menu_nav">
-        <ul>
-          <li><a href=""><span>Why Us</span></a></li>
-          <li><a href="http://rent-estu.herokuapp.com/zone/postad"><span>Post rent</span></a></li>
-          <li><a href="http://www.google.com"><span>Request rent</span></a></li>
-          <li><a href="blog.html"><span>Item X</span></a></li>
-          <li><a href="contact.html"><span>Reach Us</span></a></li>
-        </ul>
-      </div>
-	        <div class="clr"></div>
-        <div class="clr"></div>
-      </div>
-    
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span><span
+                        class="icon-bar"></span><span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">MadClik</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a "/"><i class="glyphicon glyphicon-home"></i></a>
+                    </li>
+                    <li><a href="/zone/postad">Post Rent</a></li>
+                    <li><a href="/">Request Rent</a></li>
+                    <li><a href="/">Item X</a></li>
+                    <li><a href="/">Contact Us</a></li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
         </div>
-		<div align=center>
-             <div class="sidebar">
-        <div class="searchform">
-          <form id="formsearch" name="formsearch" method="post" action="/zone/search/">
-            {% csrf_token %}
-            <span>
-            <input name="adtitle" class="editbox_search" id="editbox_search" maxlength="80" value="Search our ste:" type="text" />
-            </span>
-
-
-            <input name="search-buttone" value="submit"  src="{% static 'images/search.gif'%}" class="button_search" type="submit" />
-          </form>
-		  	              
-      <div class="clr"></div>			
     </div>
-  </div>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-  <div class="footer">
-    <div class="footer_resize">
-      <p class="lf">Copyright &copy; <a href="#">Domain Name</a>. All Rights Reserved</p>
-      <p class="rf">Get More <a target="_blank" href="http://www.free-css.com/">Free CSS Templates</a> By <a target="_blank" href="http://www.dreamtemplate.com/">DreamTemplate</a></p>
-      <div style="clear:both;"></div>
+    
+    <div class="container landingpage">
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <form>
+        <div class="row">
+            <div class="col-lg-12" align="center">
+                <div class="input-group custom-search-form col-lg-4">
+                    <form id="formsearch" method="post" action="/zone/search/">
+                      {% csrf_token %}
+                      <input type="text" name="adtitle" class="form-control input-contrast" placeholder="Search the site">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default src-btn-clr" type="submit" formmethod="post" formaction="/zone/search/">
+                           <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                      </span>
+                    </form>
+                </div>
+                <!-- /input-group -->
+            </div>
+        </div>
+        
     </div>
-  </div>
-</div>
-</div>
+    
+    <!-- /container -->
+    <!-- Footer -->
+    <div id="footer">
+        <!-- container -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="#">Terms and Conditions</a></div>
+                <div class="col-md-4">
+                    <a href="#">How it Works</a></div>
+                <div class="col-md-4">
+                    <a href="#"><i class="fa fa-facebook"></i></a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#"><i
+                        class="fa fa-twitter"></i></a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#"><i class="fa fa-linkedin">
+                        </i></a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#"><i class="fa fa-youtube"></i></a>
+                    &nbsp;&nbsp;&nbsp;&nbsp; <a href="#"><i class="fa fa-google-plus"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+            </div>
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /Footer -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{% static 'js/jquery.min.js'%}" type="text/javascript"></script>
+    <script src="{% static 'js/bootstrap.min.js'%}" type="text/javascript"></script>
 </body>
 </html>

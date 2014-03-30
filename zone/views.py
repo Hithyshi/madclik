@@ -1,19 +1,26 @@
 from django.shortcuts import render
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from zone.models import CustomerAdvertise, CustomerAdvertise2, Document
+from zone.models import CustomerAdvertise, CustomerAdvertise2, Document, PhotoUrl
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.db.models import Q
-#from zone.models import Document
-from zone.forms import DocumentForm
+#from zone.models import Document, PhotoUrl
+from zone.forms import DocumentForm, UploadForm
+from boto.s3.connection import S3Connection
+from boto.s3.key import Key
+from django.conf import settings
+import mimetypes
+from datetime import datetime
+
 # Create your views here.
 
 def homepage(request):
   return render_to_response("homepage.html",context_instance=RequestContext(request)) 
+
 
 def homesearch(request):
   try:
@@ -24,7 +31,8 @@ def homesearch(request):
     temp1 = []
     for x in search_res:
 
-      photosearch_res = Document.objects.values_list('docfile').filter(item_id__exact=x[0])  
+#valid      photosearch_res = Document.objects.values_list('docfile').filter(item_id__exact=x[0])  
+      photosearch_res = PhotoUrl.objects.values_list('url').filter(item_id__exact=x[0])
 
       y = tuple(photosearch_res)
       x = x + y
@@ -48,20 +56,44 @@ def postadv(request):
 #      return HttpResponseRedirect(reverse('zone.views.postadv'))
 #    pass
 #  else:
-  form = DocumentForm() # A empty, unbound form
+#valid  form = DocumentForm() # A empty, unbound form
 #  documents = Document.objects.all()
-  return render_to_response("postform.html", {"form":form}, context_instance=RequestContext(request))
+#valid  return render_to_response("postform.html", {"form":form}, context_instance=RequestContext(request))
+  f = UploadForm()
+  return render_to_response("postform.html", {"form":f}, context_instance=RequestContext(request))
 
 def postsuccess(request):
   try:
+    def store_in_s3(filename, content):
+      conn = S3Connection(settings.ACCESS_KEY, settings.PASS_KEY)
+      b = conn.create_bucket("remt-estu")
+      mime = mimetypes.guess_type(filename)[0]
+      k = Key(b)
+      k.key = filename
+      k.set_metadata("Content-Type", mime)
+      k.set_contents_from_string(content)
+      k.set_acl("public-read")
+  
     postitem = CustomerAdvertise2(item_cat=request.POST["select1"], item_subcat=request.POST["select2"], item_name=request.POST["prod_name"], item_desc=request.POST["description"], item_price=request.POST["text9"], item_price_per=request.POST["select10"], item_sec_dep=request.POST["text13"], item_tandc=request.POST["tandc"], item_owner_type=request.POST["select20"], item_owner_name=request.POST["text21"], item_owner_email=request.POST["email22"], item_mobile_num=request.POST["tel23"], state=request.POST["select24"], city=request.POST["select25"], locality=request.POST["select26"])
     postitem.save()
     maintable_id = postitem.id
-    form = DocumentForm(request.POST, request.FILES)
+#valid    form = DocumentForm(request.POST, request.FILES)
     
 
-    newdoc = Document(docfile = request.FILES['docfile'], item_id = maintable_id )
-    newdoc.save() 
+#valid    newdoc = Document(docfile = request.FILES['docfile'], item_id = maintable_id )
+#valid    newdoc.save() 
+    f = UploadForm(request.POST, request.FILES)
+    file = request.FILES["file"]
+    for filename, file in request.FILES.iteritems():
+      name = request.FILES[filename].name
+    temp8 = name.split(".")
+    a = datetime.now()
+    b = str(a.year) + str(a.month) + str(a.day) + str(a.hour) + str(a.minute) + str(a.second)  
+    filename = b + "." + temp8[1]
+    content = file.read()
+    store_in_s3(filename, content)
+    p = PhotoUrl(url="https://s3.amazonaws.com/remt-estu/" + filename, item_id=maintable_id)
+    p.save()
     return HttpResponseRedirect("/")
 
 #        return HttpResposeRedirect
@@ -81,7 +113,7 @@ def searchfilter(request, search_txt):
    
     for p in filter_result:
 
-      photosearchfilter_res = Document.objects.values_list('docfile').filter(item_id__exact=p[0])
+      photosearchfilter_res = PhotoUrl.objects.values_list('url').filter(item_id__exact=p[0])
 
       q = tuple(photosearchfilter_res)
       p = p + q
