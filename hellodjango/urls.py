@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     url(r'^zone/secsearch/$', 'zone.views.secsearch', name='secsearch'),
     url(r'^zone/postsuccess/$', 'zone.views.postsuccess', name='postsuccess'),
     url(r'^zone/search/(?P<search_txt>[^/]+)/filter/$', 'zone.views.searchfilter', name='searchfilter'),
+    url(r'^zone/contactus/$', 'zone.views.contactus', name='contactus'),
     #url(r'^zone/search/testing/$', 'zone.views.iframetesting', name='iframetesting'),
     # url(r'^blog/', include('blog.urls')),
 

@@ -127,3 +127,7 @@ def searchfilter(request, search_txt):
 #  else:
     return HttpResponseRedirect("/")
 
+
+def contactus(request):
+  return render_to_response("ContactUs.html",context_instance=RequestContext(request))
+

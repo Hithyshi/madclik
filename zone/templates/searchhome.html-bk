@@ -1,0 +1,66 @@
+<head>
+<script>
+function formSubmit1()
+{
+document.getElementById("frm1").submit();
+}
+</script>
+</head>
+<h1>Welcome to home page</h1>
+<div align="right"><a href="http://localhost:5000/rental/requestad/">Request</a>&nbsp&nbsp&nbsp<a href="http://localhost:5000/rental/rentoutad/">Post</a>&nbsp&nbsp&nbsp<a href="http://localhost:5000/rental/itemx/">ItemX</a>&nbsp&nbsp&nbsp<a href="http://localhost:5000/rental/aboutus/">WhyUs?</a>&nbsp&nbsp&nbsp</div> 
+<hr>
+<br>
+<br>
+<div align="center">
+<form action="/zone/search/" method="post">
+{% csrf_token %}
+Search Rentals:<br>
+<textarea name="adtitle" rows="1" cols="50"></textarea></br>
+<input type="submit" value="Submit">
+</form>
+</div>
+<div align="left">
+<form id="frm1" method="POST" action="/zone/search/{{search_txt}}/filter/">
+{% csrf_token %}
+<input type="radio" name="indibizfilter" value="Individual" onclick="formSubmit1()">Individual<br>
+<input type="radio" name="indibizfilter" value="Business" onclick="formSubmit1()">Business<br>
+</form>
+</div>
+<p>Choose Categories</p>
+<form action="">
+<select name="categories">
+<option value="Adventure">Adventure</option>
+<option value="Household">Household</option>
+<option value="Sports">Sports</option>
+<option value="Tools">Tools</option>
+</select>
+</form>
+</form>
+<div align=center>
+<!-- {% for a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q in search_res %} -->
+<!--    {{ a }} <br> {{ b }} <br> {{ c }} <br> {{ d }} <br> {{ e }} <br> {{ f }} <br> {{ g }} <br> {{ h }} <br> {{ i }} <br> {{ j }} <br> {{ k }} <br> {{ l }} <br> {{ m }} <br> {{ n }} <br> {{ o }} <br> {{ p }} <br> {{ q }} <br> -->
+<!-- {% endfor %} -->
+<!-- </div> -->
+<!-- <iframe frameborder="0" scrolling="yes" width="130" height="198" -->
+<!--  src="/zone/search/testing/" name="imgbox" id="imgbox">  -->
+<!--  <p>iframes are not supported by your browser.</p>  -->
+<!-- </iframe><br />  -->
+<br>
+<!-- {{ documents }} -->
+<!-- {{ b }} -->
+<!-- {{ documents }}  -->
+<!-- {{ temp1 }} -->
+{% for document in documents %}
+ <li><a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></li>
+{% endfor %}
+<div align=center>
+{% for a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r in temp1 %}
+    {{ a }} <br> {{ b }} <br> {{ c }} <br> {{ d }} <br> {{ e }} <br> {{ f }} <br> {{ g }} <br> {{ h }} <br> {{ i }} <br> {{ j }} <br> {{ k }} <br> {{ l }} <br> {{ m }} <br> {{ n }} <br> {{ o }} <br> {{ p }} <br> 
+
+  <br>
+  {% for document in q %}
+    <img src={{ document }} width="70" height="70">
+  
+  {% endfor %}  
+{% endfor %}
+</div>

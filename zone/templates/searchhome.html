@@ -1,66 +1,136 @@
-<head>
-<script>
-function formSubmit1()
-{
-document.getElementById("frm1").submit();
-}
-</script>
-</head>
-<h1>Welcome to home page</h1>
-<div align="right"><a href="http://localhost:5000/rental/requestad/">Request</a>&nbsp&nbsp&nbsp<a href="http://localhost:5000/rental/rentoutad/">Post</a>&nbsp&nbsp&nbsp<a href="http://localhost:5000/rental/itemx/">ItemX</a>&nbsp&nbsp&nbsp<a href="http://localhost:5000/rental/aboutus/">WhyUs?</a>&nbsp&nbsp&nbsp</div> 
-<hr>
-<br>
-<br>
-<div align="center">
-<form action="/zone/search/" method="post">
-{% csrf_token %}
-Search Rentals:<br>
-<textarea name="adtitle" rows="1" cols="50"></textarea></br>
-<input type="submit" value="Submit">
-</form>
-</div>
-<div align="left">
-<form id="frm1" method="POST" action="/zone/search/{{search_txt}}/filter/">
-{% csrf_token %}
-<input type="radio" name="indibizfilter" value="Individual" onclick="formSubmit1()">Individual<br>
-<input type="radio" name="indibizfilter" value="Business" onclick="formSubmit1()">Business<br>
-</form>
-</div>
-<p>Choose Categories</p>
-<form action="">
-<select name="categories">
-<option value="Adventure">Adventure</option>
-<option value="Household">Household</option>
-<option value="Sports">Sports</option>
-<option value="Tools">Tools</option>
-</select>
-</form>
-</form>
-<div align=center>
-<!-- {% for a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q in search_res %} -->
-<!--    {{ a }} <br> {{ b }} <br> {{ c }} <br> {{ d }} <br> {{ e }} <br> {{ f }} <br> {{ g }} <br> {{ h }} <br> {{ i }} <br> {{ j }} <br> {{ k }} <br> {{ l }} <br> {{ m }} <br> {{ n }} <br> {{ o }} <br> {{ p }} <br> {{ q }} <br> -->
-<!-- {% endfor %} -->
-<!-- </div> -->
-<!-- <iframe frameborder="0" scrolling="yes" width="130" height="198" -->
-<!--  src="/zone/search/testing/" name="imgbox" id="imgbox">  -->
-<!--  <p>iframes are not supported by your browser.</p>  -->
-<!-- </iframe><br />  -->
-<br>
-<!-- {{ documents }} -->
-<!-- {{ b }} -->
-<!-- {{ documents }}  -->
-<!-- {{ temp1 }} -->
-{% for document in documents %}
- <li><a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></li>
-{% endfor %}
-<div align=center>
-{% for a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r in temp1 %}
-    {{ a }} <br> {{ b }} <br> {{ c }} <br> {{ d }} <br> {{ e }} <br> {{ f }} <br> {{ g }} <br> {{ h }} <br> {{ i }} <br> {{ j }} <br> {{ k }} <br> {{ l }} <br> {{ m }} <br> {{ n }} <br> {{ o }} <br> {{ p }} <br> 
+{% load staticfiles %}
 
-  <br>
-  {% for document in q %}
-    <img src={{ document }} width="70" height="70">
-  
-  {% endfor %}  
-{% endfor %}
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>MadClik</title>
+    <link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/font-awesome.min.css'%}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/style.css'%}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/search.css'%}" rel="stylesheet" type="text/css" />
+    <script>
+    function formSubmit1()
+    {
+      document.getElementById("frm1").submit();
+    }
+    </script>
+
+</head>
+<body>
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span><span
+                        class="icon-bar"></span><span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">MadClik</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/"><i class="glyphicon glyphicon-home"></i></a>
+                    </li>
+                    <li><a href="/zone/postad">Post Rent</a></li>
+                    <li><a href="/">Request Rent</a></li>
+                    <li><a href="/">Item X</a></li>
+                    <li><a href="/zone/contactus">Contact Us</a></li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+    
+    <div class="container landingpage">
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <form>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="input-group custom-search-form">
+                  <form id="formsearch" method="post" action="/zone/search/">
+                    {% csrf_token %}
+                    <input type="text" name="adtitle" class="form-control input-contrast" placeholder="Search the site">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit" formmethod="post" formaction="/zone/search/">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                  </form>
+                </div>
+                <!-- /input-group -->
+            </div>
+        </div>
+        </form>
+    </div>
+    <div align="left">
+    <form id="frm1" method="POST" action="/zone/search/{{search_txt}}/filter/">
+    {% csrf_token %}
+    <input type="radio" name="indibizfilter" value="Individual" onclick="formSubmit1()">Individual<br>
+    <input type="radio" name="indibizfilter" value="Business" onclick="formSubmit1()">Business<br>
+    </form>
+    </div>
+    <div class="container">
+        <hgroup class="mb20">
+		<h1>Search Results</h1>
+<!--		<h2 class="lead"><strong class="text-danger">3</strong> results were found for the search for <strong class="text-danger">Lorem</strong></h2>		-->						
+	</hgroup>
+        <section class="col-xs-12 col-sm-6 col-md-12">
+            {% for a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r in temp1 %}  
+		<article class="search-result row">
+			<div class="col-xs-12 col-sm-12 col-md-3">
+                            {% for document in q %}
+				<a href="{{ document }}" title="Lorem ipsum" class="thumbnail"><img src="{{ document }}" alt="Lorem ipsum" /></a>
+                            {% endfor %} 
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-2">
+				<ul class="meta-search">
+					<li><i class="glyphicon glyphicon-calendar"></i> <span>{{ b }}</span></li>
+					<li><i class="glyphicon glyphicon-time"></i> <span>{{ f }}</span></li>
+					<li><i class="glyphicon glyphicon-tags"></i> <span>{{ p }}</span></li>
+				</ul>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+				<h3><a href="#" title="">{{ d }}</a></h3>
+				<p>{{ e }}</p>						
+                
+			</div>
+			<span class="clearfix borda"></span>
+		</article>
+            {% endfor %}     
+	</section>
+    </div>
+    <!-- /container -->
+    <!-- Footer -->
+    <div id="footer">
+        <!-- container -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="#">Terms and Conditions</a></div>
+                <div class="col-md-4">
+                    <a href="#">How it Works</a></div>
+                <div class="col-md-4">
+                    <a href="#"><i class="fa fa-facebook"></i></a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#"><i
+                        class="fa fa-twitter"></i></a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#"><i class="fa fa-linkedin">
+                        </i></a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#"><i class="fa fa-youtube"></i></a>
+                    &nbsp;&nbsp;&nbsp;&nbsp; <a href="#"><i class="fa fa-google-plus"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+            </div>
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /Footer -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{% static 'js/jquery.min.js'%}" type="text/javascript"></script>
+    <script src="{% static 'js/bootstrap.min.js'%}" type="text/javascript"></script>
+</body>
+</html>
