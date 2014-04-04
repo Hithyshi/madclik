@@ -27,7 +27,7 @@ def homesearch(request):
     search_txt = request.POST["adtitle"]
     print search_txt
 #    a = CustomerAdvertise2.objects.all()
-    search_res = CustomerAdvertise2.objects.values_list('id', 'item_cat', 'item_subcat', 'item_name', 'item_desc', 'item_price', 'item_price_per', 'item_sec_dep', 'item_tandc', 'item_owner_type', 'item_owner_name', 'item_owner_email', 'item_mobile_num', 'state', 'city', 'locality').filter(Q(item_desc__contains=search_txt) | Q(item_name__contains=search_txt))
+    search_res = CustomerAdvertise2.objects.values_list('id', 'item_cat', 'item_subcat', 'item_name', 'item_desc', 'item_price', 'item_price_per', 'item_sec_dep', 'item_tandc', 'item_owner_type', 'item_owner_name', 'item_owner_email', 'item_mobile_num', 'state', 'city', 'locality').filter(Q(item_desc__icontains=search_txt) | Q(item_name__icontains=search_txt))
     temp1 = []
     for x in search_res:
 
@@ -38,7 +38,25 @@ def homesearch(request):
       x = x + y
       temp1.append(x)
 #    documents = Document.objects.values_list('docfile', 'item_id').filter(item_id__exact=13)
-    return render_to_response("searchhome.html", {"search_res":search_res, "search_txt":search_txt, "temp1":temp1}, context_instance=RequestContext(request))
+    temp2 = []
+    split_words_list = []
+    search_res2 = []
+    if " " in search_txt:
+      split_words_list = search_txt.split(" ")
+      ignore_words = ['rent', 'renting', 'for', 'to', 'available', 'is', 'was', 'on', 'in', 'with', 'and', 'but', 'without', 'a', 'an', 'are', 'want', 'go']
+#      temp2 = []
+      for i in split_words_list:
+        if not i in ignore_words:
+          search_res2 = CustomerAdvertise2.objects.values_list('id', 'item_cat', 'item_subcat', 'item_name', 'item_desc', 'item_price', 'item_price_per', 'item_sec_dep', 'item_tandc', 'item_owner_type', 'item_owner_name', 'item_owner_email', 'item_mobile_num', 'state', 'city', 'locality').filter(Q(item_desc__icontains=i) | Q(item_name__icontains=i))
+       
+        for j in search_res2:
+          photosearch_res2 = PhotoUrl.objects.values_list('url').filter(item_id__exact=j[0])
+          k = tuple(photosearch_res2)
+          j = j + k
+          temp2.append(j)
+    temp3 = temp1 + temp2
+    temp4 = list(set(temp3))
+    return render_to_response("searchhome.html", {"search_res":search_res, "search_txt":search_txt, "search_res2":search_res2,  "split_words_list":split_words_list, "temp1":temp1, "temp4":temp4}, context_instance=RequestContext(request))
   except KeyError:
 #  else:
     return HttpResponseRedirect("/")
@@ -107,9 +125,9 @@ def searchfilter(request, search_txt):
   try:
 #    if search_txt != '':  
     filter_radio = request.POST["indibizfilter"]
-    filter_result = CustomerAdvertise2.objects.values_list('id', 'item_cat', 'item_subcat', 'item_name', 'item_desc', 'item_price', 'item_price_per', 'item_sec_dep', 'item_tandc', 'item_owner_type', 'item_owner_name', 'item_owner_email', 'item_mobile_num', 'state', 'city', 'locality').filter(Q(item_owner_type__contains=filter_radio), Q(item_desc__contains=search_txt) | Q(item_name__contains=search_txt))
+    filter_result = CustomerAdvertise2.objects.values_list('id', 'item_cat', 'item_subcat', 'item_name', 'item_desc', 'item_price', 'item_price_per', 'item_sec_dep', 'item_tandc', 'item_owner_type', 'item_owner_name', 'item_owner_email', 'item_mobile_num', 'state', 'city', 'locality').filter(Q(item_owner_type__contains=filter_radio), Q(item_desc__icontains=search_txt) | Q(item_name__icontains=search_txt))
     
-    temp2 = []
+    temp6 = []
    
     for p in filter_result:
 
@@ -117,10 +135,30 @@ def searchfilter(request, search_txt):
 
       q = tuple(photosearchfilter_res)
       p = p + q
-      temp2.append(p)
+      temp6.append(p)
 #    documents = Document.objects.values_list('docfile', 'item_id').filter(item_id__exact=13)
 #    return render_to_response("searchhome.html", {"search_res":search_res, "search_txt":search_txt, "temp1":temp1}, context_instance=RequestContext(request))
-    return render_to_response("filtersuccess.html", {"filter_result":filter_result, "filter_radio":filter_radio, "search_txt":search_txt, "temp2":temp2}, context_instance=RequestContext(request))
+
+    temp5 = []
+    split_words_list2 = []
+    search_res2 = []
+    if " " in search_txt:
+      split_words_list2 = search_txt.split(" ")
+      ignore_words = ['rent', 'renting', 'for', 'to', 'available', 'is', 'was', 'on', 'in', 'with', 'and', 'but', 'without', 'a', 'an', 'are', 'want', 'go']
+#      temp5 = []
+      for i in split_words_list2:
+        if not i in ignore_words:
+          search_res2 = CustomerAdvertise2.objects.values_list('id', 'item_cat', 'item_subcat', 'item_name', 'item_desc', 'item_price', 'item_price_per', 'item_sec_dep', 'item_tandc', 'item_owner_type', 'item_owner_name', 'item_owner_email', 'item_mobile_num', 'state', 'city', 'locality').filter(Q(item_owner_type__contains=filter_radio), Q(item_desc__icontains=i) | Q(item_name__icontains=i))
+
+        for j in search_res2:
+          photosearch_res2 = PhotoUrl.objects.values_list('url').filter(item_id__exact=j[0])
+          k = tuple(photosearch_res2)
+          j = j + k
+          temp5.append(j)
+    temp7 = temp6 + temp5
+    temp8 = list(set(temp7))
+
+    return render_to_response("filtersuccess.html", {"filter_result":filter_result, "filter_radio":filter_radio, "search_txt":search_txt, "temp6":temp6, "temp8":temp8}, context_instance=RequestContext(request))
 #    else:
 #      pass
   except KeyError:
