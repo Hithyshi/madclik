@@ -5,7 +5,7 @@ from zone.models import CustomerAdvertise, CustomerAdvertise2, Document, PhotoUr
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.db.models import Q
 #from zone.models import Document, PhotoUrl
@@ -64,19 +64,6 @@ def homesearch(request):
 
 
 def postadv(request):
-#  if request.method == 'POST':
-#    form = DocumentForm(request.POST, request.FILES)
-#    if form.is_valid():
-#      newdoc = Document(docfile = request.FILES['docfile'])
-#      newdoc.save()
-
-            # Redirect to the document list after POST
-#      return HttpResponseRedirect(reverse('zone.views.postadv'))
-#    pass
-#  else:
-#valid  form = DocumentForm() # A empty, unbound form
-#  documents = Document.objects.all()
-#valid  return render_to_response("postform.html", {"form":form}, context_instance=RequestContext(request))
   f = UploadForm()
   return render_to_response("postform.html", {"form":f}, context_instance=RequestContext(request))
 
@@ -163,6 +150,301 @@ def searchfilter(request, search_txt):
 #      pass
   except KeyError:
 #  else:
+    return HttpResponseRedirect("/")
+  
+
+def searchloca(request, search_txt):
+  try:
+#    if search_txt != '':
+    filter_loca = request.POST["searchloca"]
+    filter_result = CustomerAdvertise2.objects.values_list('id', 'item_cat', 'item_subcat', 'item_name', 'item_desc', 'item_price', 'item_price_per', 'item_sec_dep', 'item_tandc', 'item_owner_type', 'item_owner_name', 'item_owner_email', 'item_mobile_num', 'state', 'city', 'locality').filter(Q(locality__contains=filter_loca), Q(item_desc__icontains=search_txt) | Q(item_name__icontains=search_txt))
+
+    temp6 = []
+
+    for p in filter_result:
+
+      photosearchfilter_res = PhotoUrl.objects.values_list('url').filter(item_id__exact=p[0])
+
+      q = tuple(photosearchfilter_res)
+      p = p + q
+      temp6.append(p)
+#    documents = Document.objects.values_list('docfile', 'item_id').filter(item_id__exact=13)
+#    return render_to_response("searchhome.html", {"search_res":search_res, "search_txt":search_txt, "temp1":temp1}, context_instance=RequestContext(request))
+
+    temp5 = []
+    split_words_list2 = []
+    search_res2 = []
+    if " " in search_txt:
+      split_words_list2 = search_txt.split(" ")
+      ignore_words = ['rent', 'renting', 'for', 'to', 'available', 'is', 'was', 'on', 'in', 'with', 'and', 'but', 'without', 'a', 'an', 'are', 'want', 'go']
+#      temp5 = []
+      for i in split_words_list2:
+        if not i in ignore_words:
+          search_res2 = CustomerAdvertise2.objects.values_list('id', 'item_cat', 'item_subcat', 'item_name', 'item_desc', 'item_price', 'item_price_per', 'item_sec_dep', 'item_tandc', 'item_owner_type', 'item_owner_name', 'item_owner_email', 'item_mobile_num', 'state', 'city', 'locality').filter(Q(locality__contains=filter_loca), Q(item_desc__icontains=i) | Q(item_name__icontains=i))
+
+        for j in search_res2:
+          photosearch_res2 = PhotoUrl.objects.values_list('url').filter(item_id__exact=j[0])
+          k = tuple(photosearch_res2)
+          j = j + k
+          temp5.append(j)
+    temp7 = temp6 + temp5
+    temp8 = list(set(temp7))
+
+    return render_to_response("filtersuccesscatg.html", {"filter_result":filter_result, "filter_loca":filter_loca, "search_txt":search_txt, "temp6":temp6, "temp8":temp8}, context_instance=RequestContext(request))
+  except KeyError:
+#  else:
+    return HttpResponseRedirect("/")
+
+def searchradloca(request, search_txt, filter_radio):
+  try:
+#    if search_txt != '':
+#    filter_catg = request.GET["indibizfilter"]
+    filter_loca = request.POST["searchloca"]
+    filter_result = CustomerAdvertise2.objects.values_list('id', 'item_cat', 'item_subcat', 'item_name', 'item_desc', 'item_price', 'item_price_per', 'item_sec_dep', 'item_tandc', 'item_owner_type', 'item_owner_name', 'item_owner_email', 'item_mobile_num', 'state', 'city', 'locality').filter(Q(item_owner_type__contains=filter_radio) &  Q(locality__contains=filter_loca), Q(item_desc__icontains=search_txt) | Q(item_name__icontains=search_txt))
+
+    temp6 = []
+
+    for p in filter_result:
+
+      photosearchfilter_res = PhotoUrl.objects.values_list('url').filter(item_id__exact=p[0])
+
+      q = tuple(photosearchfilter_res)
+      p = p + q
+      temp6.append(p)
+#    documents = Document.objects.values_list('docfile', 'item_id').filter(item_id__exact=13)
+#    return render_to_response("searchhome.html", {"search_res":search_res, "search_txt":search_txt, "temp1":temp1}, context_instance=RequestContext(request))
+
+    temp5 = []
+    split_words_list2 = []
+    search_res2 = []
+    if " " in search_txt:
+      split_words_list2 = search_txt.split(" ")
+      ignore_words = ['rent', 'renting', 'for', 'to', 'available', 'is', 'was', 'on', 'in', 'with', 'and', 'but', 'without', 'a', 'an', 'are', 'want', 'go']
+#      temp5 = []
+      for i in split_words_list2:
+        if not i in ignore_words:
+          search_res2 = CustomerAdvertise2.objects.values_list('id', 'item_cat', 'item_subcat', 'item_name', 'item_desc', 'item_price', 'item_price_per', 'item_sec_dep', 'item_tandc', 'item_owner_type', 'item_owner_name', 'item_owner_email', 'item_mobile_num', 'state', 'city', 'locality').filter(Q(item_owner_type__contains=filter_radio) &  Q(locality__contains=filter_loca), Q(item_desc__icontains=i) | Q(item_name__icontains=i))
+
+        for j in search_res2:
+          photosearch_res2 = PhotoUrl.objects.values_list('url').filter(item_id__exact=j[0])
+          k = tuple(photosearch_res2)
+          j = j + k
+          temp5.append(j)
+    temp7 = temp6 + temp5
+    temp8 = list(set(temp7))
+
+    return render_to_response("filtersuccessradcatg.html", {"filter_result":filter_result, "filter_loca":filter_loca, "filter_radio":filter_radio, "search_txt":search_txt, "temp6":temp6, "temp8":temp8}, context_instance=RequestContext(request))
+  except KeyError:
+#    pass
+#  else:
+    return HttpResponseRedirect("/")
+
+def searchlocrad(request, search_txt, filter_loca):
+  try:
+#    if search_txt != '':
+    filter_radio = request.POST["indibizfilter"]
+#    filter_catg = request.POST["searchcatg"]
+    filter_result = CustomerAdvertise2.objects.values_list('id', 'item_cat', 'item_subcat', 'item_name', 'item_desc', 'item_price', 'item_price_per', 'item_sec_dep', 'item_tandc', 'item_owner_type', 'item_owner_name', 'item_owner_email', 'item_mobile_num', 'state', 'city', 'locality').filter(Q(item_owner_type__contains=filter_radio) &  Q(locality__contains=filter_loca), Q(item_desc__icontains=search_txt) | Q(item_name__icontains=search_txt))
+
+    temp6 = []
+
+    for p in filter_result:
+
+      photosearchfilter_res = PhotoUrl.objects.values_list('url').filter(item_id__exact=p[0])
+
+      q = tuple(photosearchfilter_res)
+      p = p + q
+      temp6.append(p)
+#    documents = Document.objects.values_list('docfile', 'item_id').filter(item_id__exact=13)
+#    return render_to_response("searchhome.html", {"search_res":search_res, "search_txt":search_txt, "temp1":temp1}, context_instance=RequestContext(request))
+
+    temp5 = []
+    split_words_list2 = []
+    search_res2 = []
+    if " " in search_txt:
+      split_words_list2 = search_txt.split(" ")
+      ignore_words = ['rent', 'renting', 'for', 'to', 'available', 'is', 'was', 'on', 'in', 'with', 'and', 'but', 'without', 'a', 'an', 'are', 'want', 'go']
+#      temp5 = []
+      for i in split_words_list2:
+        if not i in ignore_words:
+          search_res2 = CustomerAdvertise2.objects.values_list('id', 'item_cat', 'item_subcat', 'item_name', 'item_desc', 'item_price', 'item_price_per', 'item_sec_dep', 'item_tandc', 'item_owner_type', 'item_owner_name', 'item_owner_email', 'item_mobile_num', 'state', 'city', 'locality').filter(Q(item_owner_type__contains=filter_radio) &  Q(locality__contains=filter_loca), Q(item_desc__icontains=i) | Q(item_name__icontains=i))
+
+        for j in search_res2:
+          photosearch_res2 = PhotoUrl.objects.values_list('url').filter(item_id__exact=j[0])
+          k = tuple(photosearch_res2)
+          j = j + k
+          temp5.append(j)
+    temp7 = temp6 + temp5
+    temp8 = list(set(temp7))
+
+    return render_to_response("filtersuccesscatrad.html", {"filter_result":filter_result, "filter_loca":filter_loca, "filter_radio":filter_radio, "search_txt":search_txt, "temp6":temp6, "temp8":temp8}, context_instance=RequestContext(request))
+  except KeyError:
+#    pass
+#  else:
+    return HttpResponseRedirect("/")
+
+def noloca(request, search_txt):
+  try:
+    filter_radio = request.POST["indibizfilter"]
+    filter_result = CustomerAdvertise2.objects.values_list('id', 'item_cat', 'item_subcat', 'item_name', 'item_desc', 'item_price', 'item_price_per', 'item_sec_dep', 'item_tandc', 'item_owner_type', 'item_owner_name', 'item_owner_email', 'item_mobile_num', 'state', 'city', 'locality').filter(Q(item_owner_type__contains=filter_radio), Q(item_desc__icontains=search_txt) | Q(item_name__icontains=search_txt))
+
+    temp6 = []
+  
+    for p in filter_result:
+
+      photosearchfilter_res = PhotoUrl.objects.values_list('url').filter(item_id__exact=p[0])
+
+      q = tuple(photosearchfilter_res)
+      p = p + q
+      temp6.append(p)
+#    documents = Document.objects.values_list('docfile', 'item_id').filter(item_id__exact=13)
+#    return render_to_response("searchhome.html", {"search_res":search_res, "search_txt":search_txt, "temp1":temp1}, context_instance=RequestContext(request))
+
+    temp5 = []
+    split_words_list2 = []
+    search_res2 = []
+    if " " in search_txt:
+      split_words_list2 = search_txt.split(" ")
+      ignore_words = ['rent', 'renting', 'for', 'to', 'available', 'is', 'was', 'on', 'in', 'with', 'and', 'but', 'without', 'a', 'an', 'are', 'want', 'go']
+#      temp5 = []
+      for i in split_words_list2:
+        if not i in ignore_words:
+          search_res2 = CustomerAdvertise2.objects.values_list('id', 'item_cat', 'item_subcat', 'item_name', 'item_desc', 'item_price', 'item_price_per', 'item_sec_dep', 'item_tandc', 'item_owner_type', 'item_owner_name', 'item_owner_email', 'item_mobile_num', 'state', 'city', 'locality').filter(Q(item_owner_type__contains=filter_radio), Q(item_desc__icontains=i) | Q(item_name__icontains=i))
+
+        for j in search_res2:
+          photosearch_res2 = PhotoUrl.objects.values_list('url').filter(item_id__exact=j[0])
+          k = tuple(photosearch_res2)
+          j = j + k
+          temp5.append(j)
+    temp7 = temp6 + temp5
+    temp8 = list(set(temp7))
+    return render_to_response("filtersuccesscatrad.html", {"filter_result":filter_result, "filter_radio":filter_radio, "search_txt":search_txt, "temp6":temp6, "temp8":temp8}, context_instance=RequestContext(request))
+  except KeyError:
+    return HttpResponseRedirect("/")
+
+def homecatg(request):
+  try:
+    search_catg = request.POST["searchcatg"]
+    search_res = CustomerAdvertise2.objects.values_list('id', 'item_cat', 'item_subcat', 'item_name', 'item_desc', 'item_price', 'item_price_per', 'item_sec_dep', 'item_tandc', 'item_owner_type', 'item_owner_name', 'item_owner_email', 'item_mobile_num', 'state', 'city', 'locality').filter(item_cat__exact=search_catg)
+
+    temp4 = []
+
+    for p in search_res:
+
+      photosearchfilter_res = PhotoUrl.objects.values_list('url').filter(item_id__exact=p[0])
+
+      q = tuple(photosearchfilter_res)
+      p = p + q
+      temp4.append(p)
+    return render_to_response("searchhomecatg.html", {"search_res":search_res, "search_catg":search_catg, "temp4":temp4}, context_instance=RequestContext(request))
+  except KeyError:
+#  else:
+    return HttpResponseRedirect("/")
+
+def catgfilter(request, search_catg):
+  try:
+    filter_radio = request.POST["indibizfilter"]
+    filter_result = CustomerAdvertise2.objects.values_list('id', 'item_cat', 'item_subcat', 'item_name', 'item_desc', 'item_price', 'item_price_per', 'item_sec_dep', 'item_tandc', 'item_owner_type', 'item_owner_name', 'item_owner_email', 'item_mobile_num', 'state', 'city', 'locality').filter(item_owner_type__contains=filter_radio, item_cat__contains=search_catg)
+
+    temp6 = []
+
+    for p in filter_result:
+
+      photosearchfilter_res = PhotoUrl.objects.values_list('url').filter(item_id__exact=p[0])
+
+      q = tuple(photosearchfilter_res)
+      p = p + q
+      temp6.append(p)
+    return render_to_response("catgfiltersuccess.html", {"filter_result":filter_result, "filter_radio":filter_radio, "search_catg":search_catg, "temp6":temp6}, context_instance=RequestContext(request))
+#    else:
+#      pass
+  except KeyError:
+#  else:
+    return HttpResponseRedirect("/")
+
+def catgloca(request, search_catg):
+  try:
+#    if search_txt != '':
+    filter_loca = request.POST["searchloca"]
+    filter_result = CustomerAdvertise2.objects.values_list('id', 'item_cat', 'item_subcat', 'item_name', 'item_desc', 'item_price', 'item_price_per', 'item_sec_dep', 'item_tandc', 'item_owner_type', 'item_owner_name', 'item_owner_email', 'item_mobile_num', 'state', 'city', 'locality').filter(locality__contains=filter_loca, item_cat__contains=search_catg)
+
+    temp6 = []
+
+    for p in filter_result:
+
+      photosearchfilter_res = PhotoUrl.objects.values_list('url').filter(item_id__exact=p[0])
+
+      q = tuple(photosearchfilter_res)
+      p = p + q
+      temp6.append(p)
+    return render_to_response("catgfiltersuccessloc.html", {"filter_result":filter_result, "filter_loca":filter_loca, "search_catg":search_catg, "temp6":temp6}, context_instance=RequestContext(request))
+#    else:
+#      pass
+  except KeyError:
+#  else:
+    return HttpResponseRedirect("/")
+
+def catgradloca(request, search_catg, filter_radio):
+  try:
+#    if search_txt != '':
+#    filter_catg = request.GET["indibizfilter"]
+    filter_loca = request.POST["searchloca"]
+    filter_result = CustomerAdvertise2.objects.values_list('id', 'item_cat', 'item_subcat', 'item_name', 'item_desc', 'item_price', 'item_price_per', 'item_sec_dep', 'item_tandc', 'item_owner_type', 'item_owner_name', 'item_owner_email', 'item_mobile_num', 'state', 'city', 'locality').filter(item_owner_type__contains=filter_radio, locality__contains=filter_loca, item_cat__contains=search_catg)
+
+    temp6 = []
+
+    for p in filter_result:
+
+      photosearchfilter_res = PhotoUrl.objects.values_list('url').filter(item_id__exact=p[0])
+
+      q = tuple(photosearchfilter_res)
+      p = p + q
+      temp6.append(p)
+    return render_to_response("catgfiltersuccessradloca.html", {"filter_result":filter_result, "filter_loca":filter_loca, "filter_radio":filter_radio, "search_catg":search_catg, "temp6":temp6}, context_instance=RequestContext(request))
+  except KeyError:
+#    pass
+#  else:
+    return HttpResponseRedirect("/")
+
+
+def catglocrad(request, search_catg, filter_loca):
+  try:
+#    if search_txt != '':
+    filter_radio = request.POST["indibizfilter"]
+#    filter_catg = request.POST["searchcatg"]
+    filter_result = CustomerAdvertise2.objects.values_list('id', 'item_cat', 'item_subcat', 'item_name', 'item_desc', 'item_price', 'item_price_per', 'item_sec_dep', 'item_tandc', 'item_owner_type', 'item_owner_name', 'item_owner_email', 'item_mobile_num', 'state', 'city', 'locality').filter(item_owner_type__contains=filter_radio, locality__contains=filter_loca, item_cat__contains=search_catg)
+
+    temp6 = []
+
+    for p in filter_result:
+
+      photosearchfilter_res = PhotoUrl.objects.values_list('url').filter(item_id__exact=p[0])
+
+      q = tuple(photosearchfilter_res)
+      p = p + q
+      temp6.append(p)
+    return render_to_response("catgfiltersuccesslocrad.html", {"filter_result":filter_result, "filter_loca":filter_loca, "filter_radio":filter_radio, "search_catg":search_catg, "temp6":temp6}, context_instance=RequestContext(request))
+  except KeyError:
+#    pass
+#  else:
+    return HttpResponseRedirect("/")
+
+def catgnoloca(request, search_catg):
+  try:
+    filter_radio = request.POST["indibizfilter"]
+    filter_result = CustomerAdvertise2.objects.values_list('id', 'item_cat', 'item_subcat', 'item_name', 'item_desc', 'item_price', 'item_price_per', 'item_sec_dep', 'item_tandc', 'item_owner_type', 'item_owner_name', 'item_owner_email', 'item_mobile_num', 'state', 'city', 'locality').filter(item_owner_type__contains=filter_radio, item_cat__contains=search_catg)
+
+    temp6 = []
+
+    for p in filter_result:
+
+      photosearchfilter_res = PhotoUrl.objects.values_list('url').filter(item_id__exact=p[0])
+
+      q = tuple(photosearchfilter_res)
+      p = p + q
+      temp6.append(p)
+    return render_to_response("catgfiltersuccesslocrad.html", {"filter_result":filter_result, "filter_radio":filter_radio, "search_catg":search_catg, "temp6":temp6}, context_instance=RequestContext(request))
+  except KeyError:
     return HttpResponseRedirect("/")
 
 

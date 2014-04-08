@@ -77,7 +77,210 @@
     <input type="radio" name="indibizfilter" value="Individual" onclick="formSubmit1()">Individual<br>
     <input type="radio" name="indibizfilter" value="Business" onclick="formSubmit1()">Business<br>
     </form>
+    <p>Choose Categories</p>
+    <form action="/zone/catg/" method="POST">
+    {% csrf_token %}
+    <select name="searchcatg" id="myselect" onchange="this.form.submit()">
+    <option value="None">None</option>
+    <option value="Books">Books</option>
+    <option value="Sports">Sports</option>
+    <option value="Tools and Equipments">Tools and Equipments</option>
+    <option value="Electronics">Electronics</option>
+    <option value="Fitness">Fitness</option>
+    <option value="Kitchen and Home Appliances">Kitchen and Home Appliances</option>
+    <option value="Clothing and Costumes">Clothing and Costumes</option>
+    <option value="Camping and Adventure gears">Camping and Adventure gears</option>
+    <option value="Vehicles">Vehicles</option>
+    <option value="Event and wedding supplies">Event and wedding supplies</option>
+    <option value="Garage and Garden">Garage and Garden</option>
+    <option value="Baby accessories and Toys">Baby accessories and Toys</option>
+    <option value="Musical instruments">Musical instruments</option>
+    <option value="Entertainment">Entertainment</option>
+    <option value="Furniture">Furniture</option>
+    <option value="Office supplies">Office supplies</option>
+    <option value="Playgrounds">Playgrounds</option>
+    </select>
+    </form>
     </div>
+      <div id="item26" class="fb-item fb-100-item-column">
+      <form action="/zone/search/{{search_txt}}/loca/" method="POST">
+      {% csrf_token %}    
+        <div class="fb-grouplabel">
+          <label style="DISPLAY: inline" id="item26_label_0">Locality </label>
+                  <select id="item26_select_1" name="searchloca" onchange="this.form.submit()" data-hint="">
+           <option></option>
+		    <option>	Agaram	</option>
+<option>	Airport	</option>
+<option>	Anand Nagar	</option>
+<option>	Anepalya	</option>
+<option>	Ashok Nagar	</option>
+<option>	Attiguppe	</option>
+<option>	Austin Town	</option>
+<option>	Avenue Road	</option>
+<option>	Ayappa Garden	</option>
+<option>	B.P.Wadia Road	</option>
+<option>	Banasavadi	</option>
+<option>	Banashankari	</option>
+<option>	Bannerghatta Road	</option>
+<option>	Bapuji Nagar	</option>
+<option>	Basavanagudi	</option>
+<option>	Basaveshwara Nagar	</option>
+<option>	Bashyam Nagar	</option>
+<option>	Bellandur	</option>
+<option>	Benson Town	</option>
+<option>	Bidadi	</option>
+<option>	Bommanahalli	</option>
+<option>	Brigade Road	</option>
+<option>	Brookefield	</option>
+<option>	Btm Layout	</option>
+<option>	C V Raman Nagar	</option>
+<option>	Carmelaram Road	</option>
+<option>	Central Bengaluru	</option>
+<option>	Chamrajpet	</option>
+<option>	Channasandra	</option>
+<option>	Chikkabanavara Lake	</option>
+<option>	Church Street	</option>
+<option>	City Centre	</option>
+<option>	Cooke Town	</option>
+<option>	Cottonpet	</option>
+<option>	Cox Town	</option>
+<option>	Crescent Road	</option>
+<option>	Cunningham Road, City	</option>
+<option>	Dasarahalli	</option>
+<option>	Devanahalli	</option>
+<option>	Devasandra Lake	</option>
+<option>	Diamond District	</option>
+<option>	Dickenson Road	</option>
+<option>	Dlf Township	</option>
+<option>	Doddaballapur Rd.	</option>
+<option>	Domlur	</option>
+<option>	Electronic City	</option>
+<option>	Gandhi Nagar	</option>
+<option>	Ganga Nagar	</option>
+<option>	GM Palya	</option>
+<option>	Govindapura	</option>
+<option>	Guttahalli	</option>
+<option>	H.B.R. Layout	</option>
+<option>	H.S.R Layout	</option>
+<option>	HAL 2nd Stage	</option>
+<option>	Hanumanth Nagar	</option>
+<option>	Hebbal	</option>
+<option>	Hegde Nagar	</option>
+<option>	Hennur Main Road	</option>
+<option>	Hessarghatta Road	</option>
+<option>	High Grounds	</option>
+<option>	Hormavu	</option>
+<option>	Hosa Road	</option>
+<option>	Hosakerehalli	</option>
+<option>	Hoskote	</option>
+<option>	Hosur Road	</option>
+<option>	Hunsur Road	</option>
+<option>	Indiranagar	</option>
+<option>	Indlawadi Pura	</option>
+<option>	Infantry Road	</option>
+<option>	Isro Layout	</option>
+<option>	ITPL	</option>
+<option>	J.P. Nagar	</option>
+<option>	Jalahalli	</option>
+<option>	Jayamahal Extn	</option>
+<option>	Jayamahal Road	</option>
+<option>	Jayanagar	</option>
+<option>	Jaylakshmi Puram	</option>
+<option>	Jogapalya	</option>
+<option>	K R Puram	</option>
+<option>	K. G. Road	</option>
+<option>	K.d. Road	</option>
+<option>	Kalkere	</option>
+<option>	Kalyan Nagar	</option>
+<option>	Kammanahalli	</option>
+<option>	Kanakapura Road	</option>
+<option>	Kasavanahalli	</option>
+<option>	Kasturi Nagar	</option>
+<option>	Kempapur Agrahara	</option>
+<option>	Kempe Gowda Road	</option>
+<option>	Koramangala	</option>
+<option>	Kudlu Gate	</option>
+<option>	Kumaraswamy Layout	</option>
+<option>	Kundalahalli	</option>
+<option>	Lakkasandra	</option>
+<option>	Lalbagh Rd.	</option>
+<option>	Langford Town	</option>
+<option>	Lavelle Road	</option>
+<option>	LB Shastri Nagar	</option>
+<option>	Lottegollahalli	</option>
+<option>	M. G. Road	</option>
+<option>	Madivala	</option>
+<option>	Magrath Road	</option>
+<option>	Mahadevpura	</option>
+<option>	Mahalakshmipuram	</option>
+<option>	Mahatma Gandhi Road	</option>
+<option>	Majestic	</option>
+<option>	Malleswaram	</option>
+<option>	Marathahalli	</option>
+<option>	Mathikere	</option>
+<option>	Milk Colony	</option>
+<option>	Millers Road	</option>
+<option>	Minerva Circle	</option>
+<option>	Mysore Road	</option>
+<option>	Nagavara	</option>
+<option>	Nagvarpalya Main Road	</option>
+<option>	Nandi Durg Road	</option>
+<option>	Old Airport Road	</option>
+<option>	Outer Ring Road	</option>
+<option>	Padmanabhanagar	</option>
+<option>	Palace Road	</option>
+<option>	Peenya	</option>
+<option>	R.T. Nagar	</option>
+<option>	Race Course Road	</option>
+<option>	Raj Bhavan Road	</option>
+<option>	Raja Rajeshwari Nagar	</option>
+<option>	RajajiNagar	</option>
+<option>	Rajvi Nagar	</option>
+<option>	Ram Krishna Nagar	</option>
+<option>	Ram Murthy Nagar	</option>
+<option>	Ramamurthy Nagar	</option>
+<option>	Residency Road	</option>
+<option>	Richmond Road	</option>
+<option>	RMV Extension	</option>
+<option>	S.R. Nagar	</option>
+<option>	Sadahalli	</option>
+<option>	Sadashiv Nagar	</option>
+<option>	Sahakara Nagar	</option>
+<option>	Sampangirama Nagar	</option>
+<option>	Sanjay Nagar	</option>
+<option>	Sankey Road	</option>
+<option>	Sarakki Main Road.	</option>
+<option>	Sarjapur	</option>
+<option>	Sarjapur Road	</option>
+<option>	Seshadri Road	</option>
+<option>	Seshadripuram	</option>
+<option>	Shampura	</option>
+<option>	Shrirampuram	</option>
+<option>	Siddapura Rd.	</option>
+<option>	Silk Board Junction	</option>
+<option>	Sivan Chetty Gardens	</option>
+<option>	Sompura Gate	</option>
+<option>	Sri Ram Puram	</option>
+<option>	St. Mark's Road	</option>
+<option>	Thanisandra Road	</option>
+<option>	Thaverekere Road	</option>
+<option>	Tumkur Road	</option>
+<option>	Ulsoor	</option>
+<option>	Uttarahalli Main Road	</option>
+<option>	V.v. Mahal	</option>
+<option>	Varthur	</option>
+<option>	Vasanth Nagar	</option>
+<option>	Vidyaranyapura	</option>
+<option>	Vijayanagar	</option>
+<option>	Vittal Mallya Road	</option>
+<option>	Vivek Nagar	</option>
+<option>	Whitefield	</option>
+<option>	Wilson Garden	</option>
+
+          </select>
+        </div>
+      </form>
+      </div>
     <div class="container">
         <hgroup class="mb20">
 		<h1>Search Results</h1>

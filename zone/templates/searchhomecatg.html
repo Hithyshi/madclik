@@ -72,21 +72,16 @@
         </form>
     </div>
     <div align="left">
-    <form id="frm1" method="POST" action="/zone/search/{{search_txt}}/filter/">
-      {% csrf_token %}
-      {% if filter_radio == "Individual" %}
-        <input type="radio" name="indibizfilter" value="Individual" onclick="formSubmit1()" checked>Individual<br>
-        <input type="radio" name="indibizfilter" value="Business" onclick="formSubmit1()">Business<br>
-      {% endif %}
-      {% if filter_radio == "Business" %}
-        <input type="radio" name="indibizfilter" value="Individual" onclick="formSubmit1()">Individual<br>
-        <input type="radio" name="indibizfilter" value="Business" onclick="formSubmit1()" checked>Business<br>
-      {% endif %}
+    <form id="frm1" method="POST" action="/zone/catg/{{search_catg}}/filter/">
+    {% csrf_token %}
+    <input type="radio" name="indibizfilter" value="Individual" onclick="formSubmit1()">Individual<br>
+    <input type="radio" name="indibizfilter" value="Business" onclick="formSubmit1()">Business<br>
     </form>
     <p>Choose Categories</p>
     <form action="/zone/catg/" method="POST">
     {% csrf_token %}
     <select name="searchcatg" id="myselect" onchange="this.form.submit()">
+    <option value={{search_catg}} selected>{{search_catg}}</option>
     <option value="None">None</option>
     <option value="Books">Books</option>
     <option value="Sports">Sports</option>
@@ -109,7 +104,7 @@
     </form>
     </div>
       <div id="item26" class="fb-item fb-100-item-column">
-      <form action="/zone/search/{{search_txt}}/{{filter_radio}}/loca/" method="POST">
+      <form action="/zone/catg/{{search_catg}}/loca/" method="POST">
       {% csrf_token %}    
         <div class="fb-grouplabel">
           <label style="DISPLAY: inline" id="item26_label_0">Locality </label>
@@ -290,16 +285,16 @@
     <div class="container">
         <hgroup class="mb20">
 		<h1>Search Results</h1>
-<!--		<h2 class="lead"><strong class="text-danger">3</strong> results were found for the search for <strong class="text-danger">Lorem</strong></h2>	-->							
+<!--		<h2 class="lead"><strong class="text-danger">3</strong> results were found for the search for <strong class="text-danger">Lorem</strong></h2>		-->						
 	</hgroup>
         <section class="col-xs-12 col-sm-6 col-md-12">
-            {% for a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r in temp8 %}
+            {% for a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r in temp4 %}  
 		<article class="search-result row">
 			<div class="col-xs-12 col-sm-12 col-md-3">
                             {% for document in q %}
 				<a href="{{ document }}" title="Lorem ipsum" class="thumbnail"><img src="{{ document }}" alt="Lorem ipsum" /></a>
                             {% endfor %} 
- 			</div>
+			</div>
 			<div class="col-xs-12 col-sm-12 col-md-2">
 				<ul class="meta-search">
 					<li><i class="glyphicon glyphicon-calendar"></i> <span>{{ b }}</span></li>
@@ -314,7 +309,7 @@
 			</div>
 			<span class="clearfix borda"></span>
 		</article>
-            {% endfor %}      
+            {% endfor %}     
 	</section>
     </div>
     <!-- /container -->
