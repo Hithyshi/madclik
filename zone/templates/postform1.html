@@ -1,0 +1,357 @@
+{% load staticfiles %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Search Display Page</title>
+<link type="text/css" rel="stylesheet" href="{% static 'css/style2.css' %}">
+
+
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script> 
+<style type="text/css">
+    .bs-example{
+      margin: 20px;
+    }
+</style>
+
+</head>
+<body>
+<!--header start-->
+<div class="header" align="center">
+  <div class="h_logo"><a href="/"><img src="{% static 'images/cate/logo.jpg' %}" alt="mbi" /></a></div>
+  <div class="h_ads"><a href="#">START RENTING</a></div>
+  <div class="clearall"></div>
+</div>
+<!--header end-->
+<div class="main_section"  >
+  <div class="form_section">
+    <form name="myForm" method="post" action="/zone/postsuccess/" enctype="multipart/form-data" >
+      {% csrf_token %}   
+      <div class="post_section">
+        <label>Chose a Category </label>
+        <select onchange="favBrowser()" name="select1" id="myList">
+          <option></option>
+          <option>Books</option>
+          <option>Sports</option>
+          <option>Tools and Equipments</option>
+          <option>Electronics</option>
+          <option>Fitness</option>
+          <option>Kitchen and Home Appliances</option>
+          <option>Clothing and Costumes </option>
+          <option>Camping and Adventure gears</option>
+          <option>Vehicles</option>
+          <option>Event and wedding supplies</option>
+          <option>Garage and Garden</option>
+          <option>Baby accessories and Toys</option>
+          <option>Musical instruments</option>
+          <option>Entertainment</option>
+          <option>Furniture</option>
+          <option>Office supplies</option>
+          <option selected="selected">Playgrounds</option>
+        </select>
+      </div>
+
+<div class="dropdown">
+  <button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown">
+    Dropdown
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+    <li role="presentation" class="divider"></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+  </ul>
+</div>
+
+      <div class="post_section">
+        <label>Product Title *</label>
+        <input type="text" required="" value="" name="prod_name">
+      </div>
+<!--      <div class="post_section"> -->
+<!--        <label>Image </label> -->
+<!--        <input type="file" required="" name="file" id="id_file"> -->
+<!--      </div>   -->
+
+      <div class="form">
+         <strong>{{form.file.label}}</strong>
+         <form method="post" enctype="multipart/form-data">
+           {% csrf_token %} 
+           {{form.file}}<br/> 
+<!--         </form> -->
+      </div>
+
+      <div class="post_section">
+        <label> Description *</label>
+        <textarea rows="5" cols="50" name="description"></textarea>
+      </div>
+<!--
+<div class="post_section"> <span>
+<div class="input-group">
+  <label> Rent</label>
+  <span class="input-group-addon">Rs</span>
+  <input type="number" class="form-control">
+  <span class="input-group-addon">Per</span>
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Day<span class="caret"></span></button>
+        <ul class="dropdown-menu pull-right">
+          <li> Day </li>
+          <li> Week </li>
+          <li> Month </li>
+        </ul>
+</div>
+</div>
+
+-->
+<div class="post_section_price"> <span>
+        <label> Price</label>
+        <input type="text" required="" data-hint="" autocomplete="off" placeholder="" name="text9" maxlength="100" id="item9_text_1">
+        </span> <span>
+        <label>Per</label>
+        <select data-hint="" name="select10" id="item10_select_1">
+          <option selected="" value="Hour" id="item10_0_option"> Hour </option>
+          <option selected="" value="Day" id="item10_0_option"> Day </option>
+          <option value="Week" id="item10_1_option"> Week </option>
+          <option value="Month" id="item10_2_option"> Month </option>
+        </select>
+        </span> </div>
+
+
+
+      <div class="post_section">
+        <label>Security Deposit</label>
+        <input type="number" data-hint="" autocomplete="off" placeholder="" name="text13" maxlength="254" size="5" id="item13_text_1">
+      </div>
+      <hr />
+      <h3 align="center">Renter Details </h3>
+      <hr />
+      <div class="post_section">
+        <label>Renter Type </label>
+        <select data-hint="" name="select20" id="item20_select_1">
+          <option selected="" value="Individual" id="item20_0_option"> Individual </option>
+          <option value="Business" id="item20_1_option"> Business </option>
+        </select>
+      </div>
+      <div class="post_section">
+        <label>Renter Name </label>
+        <input type="text" data-hint="" required="" autocomplete="off" placeholder="" name="text21" maxlength="254" id="item21_text_1">
+      </div>
+      <div class="post_section">
+        <label>Email </label>
+        <input type="email" data-hint="" required="" autocomplete="off" placeholder="you@domain.com" name="email22" maxlength="254" class="" id="item22_email_1">
+      </div>
+      <div class="post_section">
+        <label>Mobile Number </label>
+        <input type="tel" data-hint="" required="" name="tel23" id="item23_tel_1">
+      </div>
+      <div class="post_section">
+        <label>State </label>
+        <select data-hint="" name="select24" id="item24_select_1">
+          <option selected="" value="Karnataka" id="item24_0_option"> karnataka </option>
+        </select>
+      </div>
+      <div class="post_section">
+        <label>City </label>
+        <select data-hint="" name="select25" id="item25_select_1">
+          <option selected="" value="Bangalore" id="item25_0_option"> Bangalore </option>
+        </select>
+      </div>
+      <div class="post_section">
+        <label>Locality </label>
+        <select data-hint="" name="select26" id="item26_select_1">
+          <option></option>
+          <option> Agaram </option>
+          <option> Airport </option>
+          <option> Anand Nagar </option>
+          <option> Anepalya </option>
+          <option> Ashok Nagar </option>
+          <option> Attiguppe </option>
+          <option> Austin Town </option>
+          <option> Avenue Road </option>
+          <option> Ayappa Garden </option>
+          <option> B.P.Wadia Road </option>
+          <option> Banasavadi </option>
+          <option> Banashankari </option>
+          <option> Bannerghatta Road </option>
+          <option> Bapuji Nagar </option>
+          <option> Basavanagudi </option>
+          <option> Basaveshwara Nagar </option>
+          <option> Bashyam Nagar </option>
+          <option> Bellandur </option>
+          <option> Benson Town </option>
+          <option> Bidadi </option>
+          <option> Bommanahalli </option>
+          <option> Brigade Road </option>
+          <option> Brookefield </option>
+          <option> Btm Layout </option>
+          <option> C V Raman Nagar </option>
+          <option> Carmelaram Road </option>
+          <option> Central Bengaluru </option>
+          <option> Chamrajpet </option>
+          <option> Channasandra </option>
+          <option> Chikkabanavara Lake </option>
+          <option> Church Street </option>
+          <option> City Centre </option>
+          <option> Cooke Town </option>
+          <option> Cottonpet </option>
+          <option> Cox Town </option>
+          <option> Crescent Road </option>
+          <option> Cunningham Road, City </option>
+          <option> Dasarahalli </option>
+          <option> Devanahalli </option>
+          <option> Devasandra Lake </option>
+          <option> Diamond District </option>
+          <option> Dickenson Road </option>
+          <option> Dlf Township </option>
+          <option> Doddaballapur Rd. </option>
+          <option> Domlur </option>
+          <option> Electronic City </option>
+          <option> Gandhi Nagar </option>
+          <option> Ganga Nagar </option>
+          <option> GM Palya </option>
+          <option> Govindapura </option>
+          <option> Guttahalli </option>
+          <option> H.B.R. Layout </option>
+          <option> H.S.R Layout </option>
+          <option> HAL 2nd Stage </option>
+          <option> Hanumanth Nagar </option>
+          <option> Hebbal </option>
+          <option> Hegde Nagar </option>
+          <option> Hennur Main Road </option>
+          <option> Hessarghatta Road </option>
+          <option> High Grounds </option>
+          <option> Hormavu </option>
+          <option> Hosa Road </option>
+          <option> Hosakerehalli </option>
+          <option> Hoskote </option>
+          <option> Hosur Road </option>
+          <option> Hunsur Road </option>
+          <option> Indiranagar </option>
+          <option> Indlawadi Pura </option>
+          <option> Infantry Road </option>
+          <option> Isro Layout </option>
+          <option> ITPL </option>
+          <option> J.P. Nagar </option>
+          <option> Jalahalli </option>
+          <option> Jayamahal Extn </option>
+          <option> Jayamahal Road </option>
+          <option> Jayanagar </option>
+          <option> Jaylakshmi Puram </option>
+          <option> Jogapalya </option>
+          <option> K R Puram </option>
+          <option> K. G. Road </option>
+          <option> K.d. Road </option>
+          <option> Kalkere </option>
+          <option> Kalyan Nagar </option>
+          <option> Kammanahalli </option>
+          <option> Kanakapura Road </option>
+          <option> Kasavanahalli </option>
+          <option> Kasturi Nagar </option>
+          <option> Kempapur Agrahara </option>
+          <option> Kempe Gowda Road </option>
+          <option> Koramangala </option>
+          <option> Kudlu Gate </option>
+          <option> Kumaraswamy Layout </option>
+          <option> Kundalahalli </option>
+          <option> Lakkasandra </option>
+          <option> Lalbagh Rd. </option>
+          <option> Langford Town </option>
+          <option> Lavelle Road </option>
+          <option> LB Shastri Nagar </option>
+          <option> Lottegollahalli </option>
+          <option> M. G. Road </option>
+          <option> Madivala </option>
+          <option> Magrath Road </option>
+          <option> Mahadevpura </option>
+          <option> Mahalakshmipuram </option>
+          <option> Mahatma Gandhi Road </option>
+          <option> Majestic </option>
+          <option> Malleswaram </option>
+          <option> Marathahalli </option>
+          <option> Mathikere </option>
+          <option> Milk Colony </option>
+          <option> Millers Road </option>
+          <option> Minerva Circle </option>
+          <option> Mysore Road </option>
+          <option> Nagavara </option>
+          <option> Nagvarpalya Main Road </option>
+          <option> Nandi Durg Road </option>
+          <option> Old Airport Road </option>
+          <option> Outer Ring Road </option>
+          <option> Padmanabhanagar </option>
+          <option> Palace Road </option>
+          <option> Peenya </option>
+          <option> R.T. Nagar </option>
+          <option> Race Course Road </option>
+          <option> Raj Bhavan Road </option>
+          <option> Raja Rajeshwari Nagar </option>
+          <option> RajajiNagar </option>
+          <option> Rajvi Nagar </option>
+          <option> Ram Krishna Nagar </option>
+          <option> Ram Murthy Nagar </option>
+          <option> Ramamurthy Nagar </option>
+          <option> Residency Road </option>
+          <option> Richmond Road </option>
+          <option> RMV Extension </option>
+          <option> S.R. Nagar </option>
+          <option> Sadahalli </option>
+          <option> Sadashiv Nagar </option>
+          <option> Sahakara Nagar </option>
+          <option> Sampangirama Nagar </option>
+          <option> Sanjay Nagar </option>
+          <option> Sankey Road </option>
+          <option> Sarakki Main Road. </option>
+          <option> Sarjapur </option>
+          <option> Sarjapur Road </option>
+          <option> Seshadri Road </option>
+          <option> Seshadripuram </option>
+          <option> Shampura </option>
+          <option> Shrirampuram </option>
+          <option> Siddapura Rd. </option>
+          <option> Silk Board Junction </option>
+          <option> Sivan Chetty Gardens </option>
+          <option> Sompura Gate </option>
+          <option> Sri Ram Puram </option>
+          <option> St. Mark's Road </option>
+          <option> Thanisandra Road </option>
+          <option> Thaverekere Road </option>
+          <option> Tumkur Road </option>
+          <option> Ulsoor </option>
+          <option> Uttarahalli Main Road </option>
+          <option> V.v. Mahal </option>
+          <option> Varthur </option>
+          <option> Vasanth Nagar </option>
+          <option> Vidyaranyapura </option>
+          <option> Vijayanagar </option>
+          <option> Vittal Mallya Road </option>
+          <option> Vivek Nagar </option>
+          <option> Whitefield </option>
+          <option> Wilson Garden </option>
+        </select>
+      </div>
+    <div class="post_section" align="center">
+      <input type="submit" name="submit" value="SUBMIT">
+    </div>
+    </form>
+    </form>
+  </div>
+</div>
+<!--footer start-->
+<div class="footer" align="center">
+<br>
+  <div class="home_categoty"><a href="/zone/catg/Baby accessories and Toys/"><img src="{% static 'images/cate/Baby accessories and Toys.jpg' %}" alt="mbi" /></a> <a href="/zone/catg/Books/"><img src="{% static 'images/cate/Books.jpg' %}" alt="lap" /></a> <a href="/zone/catg/Camping and Adventure gears/"><img src="{% static 'images/cate/Camping and Adventure gears.JPG' %}" alt="teli" /></a> <a href="/zone/catg/Clothing and Costumes/"><img src="{% static 'images/cate/Clothing and Costumes.jpg' %}" alt="fur" /></a> <a href="/zone/catg/Electronics/"><img src="{% static 'images/cate/Electronics.jpg' %}" alt="cam"  /></a> <a href="/zone/catg/Entertainment/"><img src="{% static 'images/cate/Entertainment.jpg' %}" alt="byc" /></a> <a href="/zone/catg/Event and wedding supplies/"><img src="{% static 'images/cate/Event and wedding supplies.JPG' %}" alt="baby" /></a> <a href="/zone/catg/Fitness/"><img src="{% static 'images/cate/Fitness.jpg' %}" alt="art" /></a> <a href="/zone/catg/Furniture/"><img src="{% static 'images/cate/Furniture.JPG' %}" alt="applica" /></a> <a href="/zone/catg/Garage and Garden/"><img src="{% static 'images/cate/Garage and Garden.JPG' %}" alt="cloth" /></a></div>
+  <div class="fmenu_section">
+    <ul>
+      <li><a href="">TERMS OF USE</a></li>
+      <li><a href="">REACH US</a></li>
+    </ul>
+  </div>
+</div>
+<!--footer end-->
+
+</body>
+</html>

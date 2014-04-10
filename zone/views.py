@@ -56,7 +56,8 @@ def homesearch(request):
           temp2.append(j)
     temp3 = temp1 + temp2
     temp4 = list(set(temp3))
-    return render_to_response("searchhome.html", {"search_res":search_res, "search_txt":search_txt, "search_res2":search_res2,  "split_words_list":split_words_list, "temp1":temp1, "temp4":temp4}, context_instance=RequestContext(request))
+    length = len(temp4)
+    return render_to_response("searchhome.html", {"search_res":search_res, "search_txt":search_txt, "search_res2":search_res2, "length":length,  "split_words_list":split_words_list, "temp1":temp1, "temp4":temp4}, context_instance=RequestContext(request))
   except KeyError:
 #  else:
     return HttpResponseRedirect("/")
@@ -65,7 +66,7 @@ def homesearch(request):
 
 def postadv(request):
   f = UploadForm()
-  return render_to_response("postform.html", {"form":f}, context_instance=RequestContext(request))
+  return render_to_response("postform1.html", {"form":f}, context_instance=RequestContext(request))
 
 def postsuccess(request):
   try:
@@ -79,7 +80,7 @@ def postsuccess(request):
       k.set_contents_from_string(content)
       k.set_acl("public-read")
   
-    postitem = CustomerAdvertise2(item_cat=request.POST["select1"], item_subcat=request.POST["select2"], item_name=request.POST["prod_name"], item_desc=request.POST["description"], item_price=request.POST["text9"], item_price_per=request.POST["select10"], item_sec_dep=request.POST["text13"], item_tandc=request.POST["tandc"], item_owner_type=request.POST["select20"], item_owner_name=request.POST["text21"], item_owner_email=request.POST["email22"], item_mobile_num=request.POST["tel23"], state=request.POST["select24"], city=request.POST["select25"], locality=request.POST["select26"])
+    postitem = CustomerAdvertise2(item_cat=request.POST["select1"], item_subcat="dummy", item_name=request.POST["prod_name"], item_desc=request.POST["description"], item_price=request.POST["text9"], item_price_per=request.POST["select10"], item_sec_dep=request.POST["text13"], item_tandc="dummy tandc", item_owner_type=request.POST["select20"], item_owner_name=request.POST["text21"], item_owner_email=request.POST["email22"], item_mobile_num=request.POST["tel23"], state=request.POST["select24"], city=request.POST["select25"], locality=request.POST["select26"])
     postitem.save()
     maintable_id = postitem.id
 #valid    form = DocumentForm(request.POST, request.FILES)
@@ -144,8 +145,8 @@ def searchfilter(request, search_txt):
           temp5.append(j)
     temp7 = temp6 + temp5
     temp8 = list(set(temp7))
-
-    return render_to_response("filtersuccess.html", {"filter_result":filter_result, "filter_radio":filter_radio, "search_txt":search_txt, "temp6":temp6, "temp8":temp8}, context_instance=RequestContext(request))
+    length = len(temp8)
+    return render_to_response("filtersuccess.html", {"filter_result":filter_result, "filter_radio":filter_radio, "length":length, "search_txt":search_txt, "temp6":temp6, "temp8":temp8}, context_instance=RequestContext(request))
 #    else:
 #      pass
   except KeyError:
@@ -189,8 +190,8 @@ def searchloca(request, search_txt):
           temp5.append(j)
     temp7 = temp6 + temp5
     temp8 = list(set(temp7))
-
-    return render_to_response("filtersuccesscatg.html", {"filter_result":filter_result, "filter_loca":filter_loca, "search_txt":search_txt, "temp6":temp6, "temp8":temp8}, context_instance=RequestContext(request))
+    length = len(temp8)
+    return render_to_response("filtersuccesscatg.html", {"filter_result":filter_result, "filter_loca":filter_loca, "length":length, "search_txt":search_txt, "temp6":temp6, "temp8":temp8}, context_instance=RequestContext(request))
   except KeyError:
 #  else:
     return HttpResponseRedirect("/")
@@ -232,8 +233,8 @@ def searchradloca(request, search_txt, filter_radio):
           temp5.append(j)
     temp7 = temp6 + temp5
     temp8 = list(set(temp7))
-
-    return render_to_response("filtersuccessradcatg.html", {"filter_result":filter_result, "filter_loca":filter_loca, "filter_radio":filter_radio, "search_txt":search_txt, "temp6":temp6, "temp8":temp8}, context_instance=RequestContext(request))
+    length = len(temp8)
+    return render_to_response("filtersuccessradcatg.html", {"filter_result":filter_result, "filter_loca":filter_loca, "length":length, "filter_radio":filter_radio, "search_txt":search_txt, "temp6":temp6, "temp8":temp8}, context_instance=RequestContext(request))
   except KeyError:
 #    pass
 #  else:
@@ -276,8 +277,8 @@ def searchlocrad(request, search_txt, filter_loca):
           temp5.append(j)
     temp7 = temp6 + temp5
     temp8 = list(set(temp7))
-
-    return render_to_response("filtersuccesscatrad.html", {"filter_result":filter_result, "filter_loca":filter_loca, "filter_radio":filter_radio, "search_txt":search_txt, "temp6":temp6, "temp8":temp8}, context_instance=RequestContext(request))
+    length = len(temp8)
+    return render_to_response("filtersuccesscatrad.html", {"filter_result":filter_result, "length":length, "filter_loca":filter_loca, "filter_radio":filter_radio, "search_txt":search_txt, "temp6":temp6, "temp8":temp8}, context_instance=RequestContext(request))
   except KeyError:
 #    pass
 #  else:
@@ -318,7 +319,8 @@ def noloca(request, search_txt):
           temp5.append(j)
     temp7 = temp6 + temp5
     temp8 = list(set(temp7))
-    return render_to_response("filtersuccesscatrad.html", {"filter_result":filter_result, "filter_radio":filter_radio, "search_txt":search_txt, "temp6":temp6, "temp8":temp8}, context_instance=RequestContext(request))
+    length = len(temp8)
+    return render_to_response("filtersuccesscatrad.html", {"filter_result":filter_result, "length":length, "filter_radio":filter_radio, "search_txt":search_txt, "temp6":temp6, "temp8":temp8}, context_instance=RequestContext(request))
   except KeyError:
     return HttpResponseRedirect("/")
 
@@ -336,7 +338,8 @@ def homecatg(request):
       q = tuple(photosearchfilter_res)
       p = p + q
       temp4.append(p)
-    return render_to_response("searchhomecatg.html", {"search_res":search_res, "search_catg":search_catg, "temp4":temp4}, context_instance=RequestContext(request))
+    length = len(temp4)  
+    return render_to_response("searchhomecatg.html", {"search_res":search_res, "length":length, "search_catg":search_catg, "temp4":temp4}, context_instance=RequestContext(request))
   except KeyError:
 #  else:
     return HttpResponseRedirect("/")
@@ -355,7 +358,8 @@ def catgfilter(request, search_catg):
       q = tuple(photosearchfilter_res)
       p = p + q
       temp6.append(p)
-    return render_to_response("catgfiltersuccess.html", {"filter_result":filter_result, "filter_radio":filter_radio, "search_catg":search_catg, "temp6":temp6}, context_instance=RequestContext(request))
+    length = len(temp6)
+    return render_to_response("catgfiltersuccess.html", {"filter_result":filter_result, "length":length, "filter_radio":filter_radio, "search_catg":search_catg, "temp6":temp6}, context_instance=RequestContext(request))
 #    else:
 #      pass
   except KeyError:
@@ -377,7 +381,8 @@ def catgloca(request, search_catg):
       q = tuple(photosearchfilter_res)
       p = p + q
       temp6.append(p)
-    return render_to_response("catgfiltersuccessloc.html", {"filter_result":filter_result, "filter_loca":filter_loca, "search_catg":search_catg, "temp6":temp6}, context_instance=RequestContext(request))
+    length = len(temp6)
+    return render_to_response("catgfiltersuccessloc.html", {"filter_result":filter_result, "length":length, "filter_loca":filter_loca, "search_catg":search_catg, "temp6":temp6}, context_instance=RequestContext(request))
 #    else:
 #      pass
   except KeyError:
@@ -400,7 +405,8 @@ def catgradloca(request, search_catg, filter_radio):
       q = tuple(photosearchfilter_res)
       p = p + q
       temp6.append(p)
-    return render_to_response("catgfiltersuccessradloca.html", {"filter_result":filter_result, "filter_loca":filter_loca, "filter_radio":filter_radio, "search_catg":search_catg, "temp6":temp6}, context_instance=RequestContext(request))
+    length = len(temp6)
+    return render_to_response("catgfiltersuccessradloca.html", {"filter_result":filter_result, "length":length, "filter_loca":filter_loca, "filter_radio":filter_radio, "search_catg":search_catg, "temp6":temp6}, context_instance=RequestContext(request))
   except KeyError:
 #    pass
 #  else:
@@ -423,7 +429,8 @@ def catglocrad(request, search_catg, filter_loca):
       q = tuple(photosearchfilter_res)
       p = p + q
       temp6.append(p)
-    return render_to_response("catgfiltersuccesslocrad.html", {"filter_result":filter_result, "filter_loca":filter_loca, "filter_radio":filter_radio, "search_catg":search_catg, "temp6":temp6}, context_instance=RequestContext(request))
+    length = len(temp6)
+    return render_to_response("catgfiltersuccesslocrad.html", {"filter_result":filter_result, "length":length, "filter_loca":filter_loca, "filter_radio":filter_radio, "search_catg":search_catg, "temp6":temp6}, context_instance=RequestContext(request))
   except KeyError:
 #    pass
 #  else:
@@ -443,10 +450,46 @@ def catgnoloca(request, search_catg):
       q = tuple(photosearchfilter_res)
       p = p + q
       temp6.append(p)
-    return render_to_response("catgfiltersuccesslocrad.html", {"filter_result":filter_result, "filter_radio":filter_radio, "search_catg":search_catg, "temp6":temp6}, context_instance=RequestContext(request))
+    length = len(temp6)
+    return render_to_response("catgfiltersuccesslocrad.html", {"filter_result":filter_result, "length":length, "filter_radio":filter_radio, "search_catg":search_catg, "temp6":temp6}, context_instance=RequestContext(request))
   except KeyError:
     return HttpResponseRedirect("/")
 
+def productdisplay(request, product_title, product_id):
+  try:
+    filter_result = CustomerAdvertise2.objects.values_list('id', 'item_cat', 'item_subcat', 'item_name', 'item_desc', 'item_price', 'item_price_per', 'item_sec_dep', 'item_tandc', 'item_owner_type', 'item_owner_name', 'item_owner_email', 'item_mobile_num', 'state', 'city', 'locality').filter(item_name__exact=product_title, id__exact=product_id)
+    temp6 = []
+
+    for p in filter_result:
+
+      photosearchfilter_res = PhotoUrl.objects.values_list('url').filter(item_id__exact=p[0])
+
+      q = tuple(photosearchfilter_res)
+      p = p + q
+      temp6.append(p)
+    return render_to_response("productdisplay.html", {"filter_result":filter_result,  "temp6":temp6}, context_instance=RequestContext(request))
+  except KeyError:
+    return HttpResponseRedirect("/")
+
+def searchcaticon(request, item_cat):
+  try:
+    search_catg = item_cat
+    search_res = CustomerAdvertise2.objects.values_list('id', 'item_cat', 'item_subcat', 'item_name', 'item_desc', 'item_price', 'item_price_per', 'item_sec_dep', 'item_tandc', 'item_owner_type', 'item_owner_name', 'item_owner_email', 'item_mobile_num', 'state', 'city', 'locality').filter(item_cat__exact=item_cat)
+
+    temp4 = []
+
+    for p in search_res:
+
+      photosearchfilter_res = PhotoUrl.objects.values_list('url').filter(item_id__exact=p[0])
+
+      q = tuple(photosearchfilter_res)
+      p = p + q
+      temp4.append(p)
+
+    return render_to_response("searchhomecatg.html", {"search_res":search_res, "search_catg":search_catg, "temp4":temp4}, context_instance=RequestContext(request))
+  except KeyError:
+#  else:
+    return HttpResponseRedirect("/")
 
 def contactus(request):
   return render_to_response("ContactUs.html",context_instance=RequestContext(request))

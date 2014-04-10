@@ -1,0 +1,102 @@
+{% load staticfiles %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Product Display Page</title>
+<link type="text/css" rel="stylesheet" href="{% static 'css/style2.css' %}">
+</head>
+<body>
+<!--header start-->
+<div class="header" align="center">
+  <div class="h_logo"><a href="/"><img src="{% static 'images/cate/logo.jpg' %}" alt="mbi" /></a></div>
+  <div class="h_ads"><a href="/zone/postad">START RENTING</a></div>
+  <div class="clearall"></div>
+</div>
+<!--header end-->
+<div class="main_section"  >
+  <h1 align="center">Product Display Page</h1>
+  {% for a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r in temp6 %}
+    {% if q %}
+      {% for document in q %}
+        <div class="product_left" align="center">
+          <p><img src="{{ document }}" alt="view img"  width="300" height="250" /></p>
+        </div>
+      {% endfor %}
+    {% else %}
+      <div class="product_left" align="center">
+        <p><img src="https://s3.amazonaws.com/remt-estu/20144351852.jpg" alt="view img"  width="300" height="250" /></p>
+      </div>
+    {% endif %}
+  <!--product display start-->
+  <div class="product_right">
+    <h3>Category: {{ b }}</h3>
+    <div>
+      <div class="view_title">
+        <h2>{{ d  }}</h2>
+      </div>
+      <div class="pro_section">
+        <p class="pro_firstp"> Name :</p>
+        <p class="pro_lastp" >{{ k  }}</p>
+        <div class="clearall"></div>
+      </div>
+      <div class="pro_section">
+        <p class="pro_firstp"> Business :</p>
+        <p class="pro_lastp" >{{ j }}</p>
+        <div class="clearall"></div>
+      </div>
+      <div class="pro_section">
+        <div style="float:left;">
+          <p class="pro_firstp">Mobile:</p>
+          <p class="pro_lastp" >{{ m }}</p>
+          <br />
+          <p class="pro_firstp" >Email:</p>
+          <p class="pro_lastp" >{{ l }}</p>
+          <div class="clearall"></div>
+        </div>
+        <div class="view_contact" >
+          <p ><a href="">View Contact</a></p>
+        </div>
+        <div class="clearall"></div>
+      </div>
+      <div class="pro_section">
+        <p class="pro_firstp">Locality:</p>
+        <p class="pro_lastp" >{{ p }}</p>
+        <div class="clearall"></div>
+      </div>
+    </div>
+    <!--product display end-->
+    <div class="clearall"></div>
+  </div>
+  <div class="clearall"></div>
+  <div class="product_finfo">
+    <div class="f_left">
+      <p class="prol_head"><strong>PRODUCT DESC</strong></p>
+      <p class="proldesc">{{ e }}</p>
+    </div>
+    <div class="f_right">
+      <p class="pror_head"><strong>COST DETAILS</strong></p>
+      <p class="pr_left">Price : </p>
+      <p class="pr_right">{{ f  }}</p>
+      <p class="pr_left">Security Deposit :</p>
+      <p class="pr_right">{{ h }}</p>
+    </div>
+    <div class="clearall"></div>
+  </div>
+  {% endfor %}
+</div>
+<!--footer start-->
+<div class="footer" align="center">
+<br>
+  <div class="home_categoty"><a href="/zone/catg/Baby accessories and Toys/"><img src="{% static 'images/cate/Baby accessories and Toys.jpg' %}" alt="mbi" /></a> <a href="/zone/catg/Books/"><img src="{% static 'images/cate/Books.jpg' %}" alt="lap" /></a> <a href="/zone/catg/Camping and Adventure gears/"><img src="{% static 'images/cate/Camping and Adventure gears.JPG' %}" alt="teli" /></a> <a href="/zone/catg/Clothing and Costumes/"><img src="{% static 'images/cate/Clothing and Costumes.jpg' %}" alt="fur" /></a> <a href="/zone/catg/Electronics/"><img src="{% static 'images/cate/Electronics.jpg' %}" alt="cam"  /></a> <a href="/zone/catg/Entertainment/"><img src="{% static 'images/cate/Entertainment.jpg' %}" alt="byc" /></a> <a href="/zone/catg/Event and wedding supplies/"><img src="{% static 'images/cate/Event and wedding supplies.JPG' %}" alt="baby" /></a> <a href="/zone/catg/Fitness/"><img src="{% static 'images/cate/Fitness.jpg' %}" alt="art" /></a> <a href="/zone/catg/Furniture/"><img src="{% static 'images/cate/Furniture.JPG' %}" alt="applica" /></a> <a href="/zone/catg/Garage and Garden/"><img src="{% static 'images/cate/Garage and Garden.JPG' %}" alt="cloth" /></a></div>
+  <div class="fmenu_section">
+    <ul>
+      <li><a href="">TERMS OF USE</a></li>
+      <li><a href="">REACH US</a></li>
+    </ul>
+  </div>
+</div>
+<!--footer end-->
+</body>
+</html>

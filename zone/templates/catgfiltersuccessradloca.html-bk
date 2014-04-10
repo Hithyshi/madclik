@@ -1,0 +1,346 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>MadClik</title>
+    <link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/font-awesome.min.css'%}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/style.css'%}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/search.css'%}" rel="stylesheet" type="text/css" />
+    <script>
+    function formSubmit1()
+    {
+      document.getElementById("frm1").submit();
+    }
+    </script>
+
+</head>
+<body>
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span><span
+                        class="icon-bar"></span><span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">MadClik</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/"><i class="glyphicon glyphicon-home"></i></a>
+                    </li>
+                    <li><a href="/zone/postad">Post Rent</a></li>
+                    <li><a href="/">Request Rent</a></li>
+                    <li><a href="/">Item X</a></li>
+                    <li><a href="/zone/contactus">Contact Us</a></li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+    
+    <div class="container landingpage">
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <form>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="input-group custom-search-form">
+                  <form id="formsearch" method="post" action="/zone/search/">
+                    {% csrf_token %}
+                    <input type="text" name="adtitle" class="form-control input-contrast" placeholder="Search the site">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit" formmethod="post" formaction="/zone/search/">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                  </form>
+                </div>
+                <!-- /input-group -->
+            </div>
+        </div>
+        </form>
+    </div>
+    <div align="left">
+    <form id="frm1" method="POST" action="/zone/catg/{{search_catg}}/{{filter_loca}}/filter/">
+      {% csrf_token %}
+      {% if filter_radio == "Individual" %}
+        <input type="radio" name="indibizfilter" value="Individual" onclick="formSubmit1()" checked>Individual<br>
+        <input type="radio" name="indibizfilter" value="Business" onclick="formSubmit1()">Business<br>
+      {% endif %}
+      {% if filter_radio == "Business" %}
+        <input type="radio" name="indibizfilter" value="Individual" onclick="formSubmit1()">Individual<br>
+        <input type="radio" name="indibizfilter" value="Business" onclick="formSubmit1()" checked>Business<br>
+      {% endif %}
+    </form>
+    <p>Choose Categories</p>
+    <form action="/zone/catg/" method="POST">
+    {% csrf_token %}
+    <select name="searchcatg" id="myselect" onchange="this.form.submit()">
+    <option value={{search_catg}} selected>{{search_catg}}</option>
+    <option value="None">None</option>
+    <option value="Books">Books</option>
+    <option value="Sports">Sports</option>
+    <option value="Tools and Equipments">Tools and Equipments</option>
+    <option value="Electronics">Electronics</option>
+    <option value="Fitness">Fitness</option>
+    <option value="Kitchen and Home Appliances">Kitchen and Home Appliances</option>
+    <option value="Clothing and Costumes">Clothing and Costumes</option>
+    <option value="Camping and Adventure gears">Camping and Adventure gears</option>
+    <option value="Vehicles">Vehicles</option>
+    <option value="Event and wedding supplies">Event and wedding supplies</option>
+    <option value="Garage and Garden">Garage and Garden</option>
+    <option value="Baby accessories and Toys">Baby accessories and Toys</option>
+    <option value="Musical instruments">Musical instruments</option>
+    <option value="Entertainment">Entertainment</option>
+    <option value="Furniture">Furniture</option>
+    <option value="Office supplies">Office supplies</option>
+    <option value="Playgrounds">Playgrounds</option>
+    </select>
+    </form>
+    </div>
+      <div id="item26" class="fb-item fb-100-item-column">
+      <form action="/zone/catg/{{search_catg}}/{{filter_radio}}/loca/" method="POST">
+      {% csrf_token %}    
+        <div class="fb-grouplabel">
+          <label style="DISPLAY: inline" id="item26_label_0">Locality </label>
+                  <select id="item26_select_1" name="searchloca" onchange="this.form.submit()" data-hint="">
+           <option value={{filter_loca}} selected>{{filter_loca}}</option>          
+           <option></option>
+		    <option>	Agaram	</option>
+<option>	Airport	</option>
+<option>	Anand Nagar	</option>
+<option>	Anepalya	</option>
+<option>	Ashok Nagar	</option>
+<option>	Attiguppe	</option>
+<option>	Austin Town	</option>
+<option>	Avenue Road	</option>
+<option>	Ayappa Garden	</option>
+<option>	B.P.Wadia Road	</option>
+<option>	Banasavadi	</option>
+<option>	Banashankari	</option>
+<option>	Bannerghatta Road	</option>
+<option>	Bapuji Nagar	</option>
+<option>	Basavanagudi	</option>
+<option>	Basaveshwara Nagar	</option>
+<option>	Bashyam Nagar	</option>
+<option>	Bellandur	</option>
+<option>	Benson Town	</option>
+<option>	Bidadi	</option>
+<option>	Bommanahalli	</option>
+<option>	Brigade Road	</option>
+<option>	Brookefield	</option>
+<option>	Btm Layout	</option>
+<option>	C V Raman Nagar	</option>
+<option>	Carmelaram Road	</option>
+<option>	Central Bengaluru	</option>
+<option>	Chamrajpet	</option>
+<option>	Channasandra	</option>
+<option>	Chikkabanavara Lake	</option>
+<option>	Church Street	</option>
+<option>	City Centre	</option>
+<option>	Cooke Town	</option>
+<option>	Cottonpet	</option>
+<option>	Cox Town	</option>
+<option>	Crescent Road	</option>
+<option>	Cunningham Road, City	</option>
+<option>	Dasarahalli	</option>
+<option>	Devanahalli	</option>
+<option>	Devasandra Lake	</option>
+<option>	Diamond District	</option>
+<option>	Dickenson Road	</option>
+<option>	Dlf Township	</option>
+<option>	Doddaballapur Rd.	</option>
+<option>	Domlur	</option>
+<option>	Electronic City	</option>
+<option>	Gandhi Nagar	</option>
+<option>	Ganga Nagar	</option>
+<option>	GM Palya	</option>
+<option>	Govindapura	</option>
+<option>	Guttahalli	</option>
+<option>	H.B.R. Layout	</option>
+<option>	H.S.R Layout	</option>
+<option>	HAL 2nd Stage	</option>
+<option>	Hanumanth Nagar	</option>
+<option>	Hebbal	</option>
+<option>	Hegde Nagar	</option>
+<option>	Hennur Main Road	</option>
+<option>	Hessarghatta Road	</option>
+<option>	High Grounds	</option>
+<option>	Hormavu	</option>
+<option>	Hosa Road	</option>
+<option>	Hosakerehalli	</option>
+<option>	Hoskote	</option>
+<option>	Hosur Road	</option>
+<option>	Hunsur Road	</option>
+<option>	Indiranagar	</option>
+<option>	Indlawadi Pura	</option>
+<option>	Infantry Road	</option>
+<option>	Isro Layout	</option>
+<option>	ITPL	</option>
+<option>	J.P. Nagar	</option>
+<option>	Jalahalli	</option>
+<option>	Jayamahal Extn	</option>
+<option>	Jayamahal Road	</option>
+<option>	Jayanagar	</option>
+<option>	Jaylakshmi Puram	</option>
+<option>	Jogapalya	</option>
+<option>	K R Puram	</option>
+<option>	K. G. Road	</option>
+<option>	K.d. Road	</option>
+<option>	Kalkere	</option>
+<option>	Kalyan Nagar	</option>
+<option>	Kammanahalli	</option>
+<option>	Kanakapura Road	</option>
+<option>	Kasavanahalli	</option>
+<option>	Kasturi Nagar	</option>
+<option>	Kempapur Agrahara	</option>
+<option>	Kempe Gowda Road	</option>
+<option>	Koramangala	</option>
+<option>	Kudlu Gate	</option>
+<option>	Kumaraswamy Layout	</option>
+<option>	Kundalahalli	</option>
+<option>	Lakkasandra	</option>
+<option>	Lalbagh Rd.	</option>
+<option>	Langford Town	</option>
+<option>	Lavelle Road	</option>
+<option>	LB Shastri Nagar	</option>
+<option>	Lottegollahalli	</option>
+<option>	M. G. Road	</option>
+<option>	Madivala	</option>
+<option>	Magrath Road	</option>
+<option>	Mahadevpura	</option>
+<option>	Mahalakshmipuram	</option>
+<option>	Mahatma Gandhi Road	</option>
+<option>	Majestic	</option>
+<option>	Malleswaram	</option>
+<option>	Marathahalli	</option>
+<option>	Mathikere	</option>
+<option>	Milk Colony	</option>
+<option>	Millers Road	</option>
+<option>	Minerva Circle	</option>
+<option>	Mysore Road	</option>
+<option>	Nagavara	</option>
+<option>	Nagvarpalya Main Road	</option>
+<option>	Nandi Durg Road	</option>
+<option>	Old Airport Road	</option>
+<option>	Outer Ring Road	</option>
+<option>	Padmanabhanagar	</option>
+<option>	Palace Road	</option>
+<option>	Peenya	</option>
+<option>	R.T. Nagar	</option>
+<option>	Race Course Road	</option>
+<option>	Raj Bhavan Road	</option>
+<option>	Raja Rajeshwari Nagar	</option>
+<option>	RajajiNagar	</option>
+<option>	Rajvi Nagar	</option>
+<option>	Ram Krishna Nagar	</option>
+<option>	Ram Murthy Nagar	</option>
+<option>	Ramamurthy Nagar	</option>
+<option>	Residency Road	</option>
+<option>	Richmond Road	</option>
+<option>	RMV Extension	</option>
+<option>	S.R. Nagar	</option>
+<option>	Sadahalli	</option>
+<option>	Sadashiv Nagar	</option>
+<option>	Sahakara Nagar	</option>
+<option>	Sampangirama Nagar	</option>
+<option>	Sanjay Nagar	</option>
+<option>	Sankey Road	</option>
+<option>	Sarakki Main Road.	</option>
+<option>	Sarjapur	</option>
+<option>	Sarjapur Road	</option>
+<option>	Seshadri Road	</option>
+<option>	Seshadripuram	</option>
+<option>	Shampura	</option>
+<option>	Shrirampuram	</option>
+<option>	Siddapura Rd.	</option>
+<option>	Silk Board Junction	</option>
+<option>	Sivan Chetty Gardens	</option>
+<option>	Sompura Gate	</option>
+<option>	Sri Ram Puram	</option>
+<option>	St. Mark's Road	</option>
+<option>	Thanisandra Road	</option>
+<option>	Thaverekere Road	</option>
+<option>	Tumkur Road	</option>
+<option>	Ulsoor	</option>
+<option>	Uttarahalli Main Road	</option>
+<option>	V.v. Mahal	</option>
+<option>	Varthur	</option>
+<option>	Vasanth Nagar	</option>
+<option>	Vidyaranyapura	</option>
+<option>	Vijayanagar	</option>
+<option>	Vittal Mallya Road	</option>
+<option>	Vivek Nagar	</option>
+<option>	Whitefield	</option>
+<option>	Wilson Garden	</option>
+
+          </select>
+        </div>
+      </form>
+    <div class="container">
+        <hgroup class="mb20">
+		<h1>Search Results</h1>
+<!--		<h2 class="lead"><strong class="text-danger">3</strong> results were found for the search for <strong class="text-danger">Lorem</strong></h2>	-->							
+	</hgroup>
+        <section class="col-xs-12 col-sm-6 col-md-12">
+            {% for a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r in temp6 %}
+		<article class="search-result row">
+			<div class="col-xs-12 col-sm-12 col-md-3">
+                            {% for document in q %}
+				<a href="{{ document }}" title="Lorem ipsum" class="thumbnail"><img src="{{ document }}" alt="Lorem ipsum" /></a>
+                            {% endfor %} 
+ 			</div>
+			<div class="col-xs-12 col-sm-12 col-md-2">
+				<ul class="meta-search">
+					<li><i class="glyphicon glyphicon-calendar"></i> <span>{{ b }}</span></li>
+					<li><i class="glyphicon glyphicon-time"></i> <span>{{ f }}</span></li>
+					<li><i class="glyphicon glyphicon-tags"></i> <span>{{ p }}</span></li>
+				</ul>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+				<h3><a href="#" title="">{{ d }}</a></h3>
+				<p>{{ e }}</p>						
+                
+			</div>
+			<span class="clearfix borda"></span>
+		</article>
+            {% endfor %}      
+	</section>
+    </div>
+    <!-- /container -->
+    <!-- Footer -->
+    <div id="footer">
+        <!-- container -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="#">Terms and Conditions</a></div>
+                <div class="col-md-4">
+                    <a href="#">How it Works</a></div>
+                <div class="col-md-4">
+                    <a href="#"><i class="fa fa-facebook"></i></a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#"><i
+                        class="fa fa-twitter"></i></a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#"><i class="fa fa-linkedin">
+                        </i></a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#"><i class="fa fa-youtube"></i></a>
+                    &nbsp;&nbsp;&nbsp;&nbsp; <a href="#"><i class="fa fa-google-plus"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+            </div>
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /Footer -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{% static 'js/jquery.min.js'%}" type="text/javascript"></script>
+    <script src="{% static 'js/bootstrap.min.js'%}" type="text/javascript"></script>
+</body>
+</html>
