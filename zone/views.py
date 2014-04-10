@@ -44,7 +44,6 @@ def homesearch(request):
     if " " in search_txt:
       split_words_list = search_txt.split(" ")
       ignore_words = ['rent', 'renting', 'for', 'to', 'available', 'is', 'was', 'on', 'in', 'with', 'and', 'but', 'without', 'a', 'an', 'are', 'want', 'go']
-#      temp2 = []
       for i in split_words_list:
         if not i in ignore_words:
           search_res2 = CustomerAdvertise2.objects.values_list('id', 'item_cat', 'item_subcat', 'item_name', 'item_desc', 'item_price', 'item_price_per', 'item_sec_dep', 'item_tandc', 'item_owner_type', 'item_owner_name', 'item_owner_email', 'item_mobile_num', 'state', 'city', 'locality').filter(Q(item_desc__icontains=i) | Q(item_name__icontains=i))
