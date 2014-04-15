@@ -15,7 +15,7 @@ from boto.s3.key import Key
 from django.conf import settings
 import mimetypes
 from datetime import datetime
-
+from PIL import Image
 # Create your views here.
 
 def homepage(request):
@@ -76,6 +76,7 @@ def postsuccess(request):
       k = Key(b)
       k.key = filename
       k.set_metadata("Content-Type", mime)
+#      k.set_contents_from_file(content)
       k.set_contents_from_string(content)
       k.set_acl("public-read")
   
@@ -95,7 +96,14 @@ def postsuccess(request):
     a = datetime.now()
     b = str(a.year) + str(a.month) + str(a.day) + str(a.hour) + str(a.minute) + str(a.second)  
     filename = b + "." + temp8[1]
-    content = file.read()
+#real    content = file.read() 
+    im = Image.open(file)
+    im.thumbnail((400, 400))
+    im.save("hellodjango/media/hetero.jpg")
+    dfile = open("hellodjango/media/hetero.jpg", "rb")
+    content = dfile.read()
+#    im.open()
+#    content = im.load()
     store_in_s3(filename, content)
     p = PhotoUrl(url="https://s3.amazonaws.com/remt-estu/" + filename, item_id=maintable_id)
     p.save()
