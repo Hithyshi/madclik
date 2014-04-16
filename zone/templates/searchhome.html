@@ -256,8 +256,8 @@ function formSubmit1()
         <div class="search_refshow">
         <div class="resu_right">
         <div class="search_image">
-        {% if q %}
-          {% for document in q %}
+        {% if r %}
+          {% for document in r %}
               <p><img src="{{ document }}" alt="home1" width="100" /></p>
           {% endfor %}
         {% else %}
@@ -267,7 +267,7 @@ function formSubmit1()
         <div class="search_cnt"> <a href="/zone/product/{{ d }}/{{ a }}/" target="_blank">
           <h2>{{ d }}</h2>
           </a>
-          <p><span>{{ b }}</span>|<span>{{ f }}</span>|<span>{{ p }}</span></p>
+          <p><span>{{ b }}</span>|<span>{{ p }}</span>|<span>{{ q }}</span></p>
         </div>
         </div>
         </div>

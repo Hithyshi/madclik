@@ -4,6 +4,7 @@
 
 from django.db import models
 import datetime
+from django_evolution.mutations import AddField
 from django.utils import timezone
 from datetime import datetime
 # Create your models here.
@@ -31,6 +32,7 @@ class CustomerAdvertise2(models.Model):
   state = models.CharField(max_length=20)
   city = models.CharField(max_length=20)
   locality = models.CharField(max_length=40)
+  post_datetime = models.DateTimeField('date_posted', null=True)  
 
 class Document(models.Model):
   docfile = models.FileField(upload_to='documents/%Y/%m/%d')
