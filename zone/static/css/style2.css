@@ -257,6 +257,7 @@ a:hover {
 	margin-top:11px;
 	margin-bottom:10px;
 }
+/*
 .h_ads {
 	width:300px;
 	float:right;
@@ -278,6 +279,7 @@ a:hover {
 	color:#FFFFFF;
 	background:#0033FF;
 }
+*/
 .h_logo a {
 	font-size:24px;
 }
@@ -484,3 +486,59 @@ hr {
 	box-shadow: 0 0 10px #fff inset;
 	color:#FFFFFF;
 }
+
+
+
+#header2
+	{
+		position: relative;
+        height:108px;
+        border:none;
+        width:100%;
+    	background: #4279ae;
+		color: #4279ae;
+		text-decoration: none;
+	}
+    
+    
+    #top_logo
+{
+        position: relative;
+		float: left;
+		margin-top: 1%;
+		margin-left: 5%;
+		
+		height:78px;
+		width: 187px;
+		
+		background: url(../images/newcate/logo.jpg) no-repeat; 
+        }
+/*  
+  .h_ads {
+	width:300px;
+	float:right;
+	margin-top:3%;
+	margin-right: 5%;
+}
+.h_ads a {
+	padding:20px;
+	padding-right:40px;
+	padding-left:40px;
+	background:#FE7600;
+	border-radius:10px;
+	font-weight:600;
+    font-size:larger;
+	//box-shadow:0 0 10px #fff inset;
+	color:#fff;
+	text-decoration: none;
+    
+}
+
+.fmenu_section {
+	padding:10px;
+	padding-top:5px;
+	padding-left:40px;
+	padding-right:40px;
+	border-shadow:0px 0px 10 #FCFCFC inset;
+}
+*/

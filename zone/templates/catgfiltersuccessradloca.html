@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Search Display Page</title>
+<link type="text/css" rel="stylesheet" href="{% static 'css/style3.css' %}">
 <link type="text/css" rel="stylesheet" href="{% static 'css/style2.css' %}">
 <script>
 function formSubmit1()
@@ -15,11 +16,10 @@ function formSubmit1()
 </head>
 <body>
 <!--header start-->
-<div class="header" align="center">
-  <div class="h_logo"><a href="/"><img src="{% static 'images/cate/logo.jpg' %}" alt="mbi" /></a></div>
-  <div class="h_ads"><a href="/zone/postad">START RENTING</a></div>
-  <div class="clearall"></div>
-</div>
+	<div id="header2">
+		 	<a href="/"><div id="top_logo"></div></a>
+			<div class="h_ads"><a href="/zone/postad">START RENTING</a></div>
+	</div>
 <!--header end-->
 <div class="main_section"  >
   <h1 align="center" >Search Display Page</h1>
@@ -243,7 +243,7 @@ function formSubmit1()
     <form id="frm1" method="POST" action="/zone/catg/{{search_catg}}/{{filter_loca}}/filter/">
       {% csrf_token %}
       {% if filter_radio == "Individual" %}
-        <input type="radio" name="indibizfilter" value="Individual" onclick="formSubmit1()" checked>Individual&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspOR&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbs
+        <input type="radio" name="indibizfilter" value="Individual" onclick="formSubmit1()" checked>Individual&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspOR&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
         <input type="radio" name="indibizfilter" value="Business" onclick="formSubmit1()">Business<br>
       {% endif %}
       {% if filter_radio == "Business" %}
@@ -290,8 +290,8 @@ function formSubmit1()
   <div class="home_categoty"><a href="/zone/catg/Baby accessories and Toys/"><img src="{% static 'images/cate/Baby accessories and Toys.jpg' %}" alt="mbi" /></a> <a href="/zone/catg/Books/"><img src="{% static 'images/cate/Books.jpg' %}" alt="lap" /></a> <a href="/zone/catg/Camping and Adventure gears/"><img src="{% static 'images/cate/Camping and Adventure gears.jpg' %}" alt="teli" /></a> <a href="/zone/catg/Clothing and Costumes/"><img src="{% static 'images/cate/Clothing and Costumes.jpg' %}" alt="fur" /></a> <a href="/zone/catg/Electronics/"><img src="{% static 'images/cate/Electronics.jpg' %}" alt="cam"  /></a> <a href="/zone/catg/Entertainment/"><img src="{% static 'images/cate/Entertainment.jpg' %}" alt="byc" /></a> <a href="/zone/catg/Event and wedding supplies/"><img src="{% static 'images/cate/Event and wedding supplies.jpg' %}" alt="baby" /></a> <a href="/zone/catg/Fitness/"><img src="{% static 'images/cate/Fitness.jpg' %}" alt="art" /></a> <a href="/zone/catg/Furniture/"><img src="{% static 'images/cate/Furniture.jpg' %}" alt="applica" /></a> <a href="/zone/catg/Garage and Garden/"><img src="{% static 'images/cate/Garage and Garden.jpg' %}" alt="cloth" /></a></div>
   <div class="fmenu_section">
     <ul>
-      <li><a href="">TERMS OF USE</a></li>
-      <li><a href="">REACH US</a></li>
+      <li><a href="/zone/termsofuse/">TERMS OF USE</a></li>
+      <li><a href="/zone/reachus/">REACH US</a></li>
     </ul>
   </div>
 </div>

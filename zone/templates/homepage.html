@@ -1,40 +1,95 @@
 {% load staticfiles %}
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Home Page</title>
-<link type="text/css" rel="stylesheet" href="{% static 'css/style2.css' %}">
-</head>
-<body >
-<!--header start-->
-<div class="header" align="center">
-  <div class="h_logo"><a href="/"><img src="{% static 'images/cate/logo.jpg' %}" alt="mbi" /></a></div>
-  <div class="h_ads"><a href="/zone/postad">START RENTING</a></div>
-  <div class="clearall"></div>
-</div>
-<!--header end-->
-<div class="main_section_home" >
-  <div class="main_searchbox" align="center">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns:fb="http://ogp.me/ns/fb#">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Madclik</title>
+		<meta name="description" content="." />
+		
+		<link rel="stylesheet" href="{% static 'css/style3.css' %}" type="text/css" media="screen" />
+		<style type="text/css">
+        </style>
+
+
+		</head>
+<body>
+	<!--main page-->	
+<!-- AddThis Button BEGIN -->
+	<div id="pageBody">
+	<div id="header1">
+		 	<a href="/"><div id="top_logo"></div></a>
+			<div class="h_ads"><a href="/zone/postad">START RENTING</a></div>
+	</div>
+	<div id="top_1st">
+	<table width="100%" height="100%" border="0">
+  <tr>
+    <td width="30%"><a href="/zone/catg/Clothing and Costumes/"><div id="top_Clothing"></div></a></td>
+    <td width="20%"><a href="/zone/catg/Vehicles/"><div id="top_Vehicles"></div></a></td>
+    <td width="25%"><a href="/zone/catg/Office supplies/"><div id="top_Office"></div></a></td>
+	<td width="25%"><a href="/zone/catg/Camping and Adventure gears/"><div id="top_Camping"></div></a></td>
+  </tr>
+</table>
+	</div>
+	<div id="top_2nd">
+	<div class="main_searchbox" align="60%">
     <form class="" name="" method="post" action="/zone/search/">
-    {% csrf_token %}
-      <input type="text" class="main_search" name="adtitle" id="TextSearch" placeholder="What do you want to rent... " />
-      <input type="submit" name="Searchsubmit" id="Searchsubmit" value="SEARCH" />
-    </form>
-  </div>
+      {% csrf_token %}
+      <input type="text" class="main_search" name="adtitle" id="TextSearch" placeholder="You have millions of things on your mind... Start Searching">
+      <input type="submit" name="Searchsubmit" id="Searchsubmit" value="SEARCH">
+    </form></div>
+	<a href="/zone/catg/Entertainment/"><div id="top_Entertainment"></div></a>
+    
+	</div>
+	
+	<div id="top_3rd">
+		<table width="100%" height="100%" border="0">
+  <tr>
+    <td width="25%" rowspan="3"><a href="/zone/catg/Event and wedding supplies/"><div id="top_Event"></div></a></td>
+    <td width="20%"><a href="/zone/catg/Kitchen and Home Appliances/"><div id="top_Kitchen"></div></a></td>
+    <td width="15%"><a href="/zone/catg/Furniture/"><div id="top_Furniture"></div></a></td>
+	<td width="45%" rowspan="3"><a href="/zone/catg/Books/"><div id="top_Books"></div></a></td>
+  </tr>
+  <tr>
+    <td width="25%"><a href="/zone/catg/Sports/"><div id="top_Sports"></div></a><a href="/zone/catg/Tools and Equipments/"><div id="top_Tools"></div></a></td>
+    <td width="10%"><a href="/zone/catg/Playgrounds/"><div id="top_Playgrounds"></div></a></td>
+	 </tr>
+	 </table>
+
+	</div>
+	<div id="top_4th">
+	<table width="100%" height="100%" border="0">
+  <tr>
+    <td width="40%" rowspan="2"><a href="/zone/catg/Musical instruments/"><div id="top_Musical"></div></a></td>
+    <td width="10%"><a href="/zone/catg/Garage and Garden/"><div id="top_Garage"></div></a></td>
+	<td width="15%" rowspan="2"><a href="/zone/catg/Baby accessories and Toys/"><div id="top_Baby"></div></a></td>
+	<td width="35%" rowspan="2"><a href="/zone/catg/Electronics/"><div id="top_Electronics"></div></a></td>
+	
+  </tr>
+  
+  <tr>
+    <td width="10%"><a href="/zone/catg/Fitness/"><div id="top_Fitness"></div></a></td>
+  	 </tr>
+	 </table>
+	</div>
+	
+	<div id="footer">
+
+<div id="copyright">
+  	<p><font color="#ffffff"><a href="/zone/termsofuse/">Terms of use</a> | <a href="/zone/reachus/" rel="nofollow">Reach Us</a></font></p>
+</div>	
+<div id="link">
+<object width='217' height='32'><embed src='http://www.socialbuttonmaker.com/Swfs/fcda78f6-ba6a-40f3-992a-8df80efebb6e/button.swf' type='application/x-shockwave-flash' width='217' height='32' loop='false' wmode='transparent'><noscript><a href='http://themeparksindisney.com/'>theme parks in disney</a></noscript></embed><img src='' width=0 height=0 id='flashbutton'/><script type='text/javascript' src='http://www.socialbuttonmaker.com/Scripts/FlashButton.js'></script></object>	
 </div>
-<!--footer start-->
-<div class="footer" align="center">
-<br>
-  <div class="home_categoty"><a href="/zone/catg/Baby accessories and Toys/"><img src="{% static 'images/cate/Baby accessories and Toys.jpg' %}" alt="mbi" /></a> <a href="/zone/catg/Books/"><img src="{% static 'images/cate/Books.jpg' %}" alt="lap" /></a> <a href="/zone/catg/Camping and Adventure gears/"><img src="{% static 'images/cate/Camping and Adventure gears.jpg' %}" alt="teli" /></a> <a href="/zone/catg/Clothing and Costumes/"><img src="{% static 'images/cate/Clothing and Costumes.jpg' %}" alt="fur" /></a> <a href="/zone/catg/Electronics/"><img src="{% static 'images/cate/Electronics.jpg' %}" alt="cam"  /></a> <a href="/zone/catg/Entertainment/"><img src="{% static 'images/cate/Entertainment.jpg' %}" alt="byc" /></a> <a href="/zone/catg/Event and wedding supplies/"><img src="{% static 'images/cate/Event and wedding supplies.jpg' %}" alt="baby" /></a> <a href="/zone/catg/Fitness/"><img src="{% static 'images/cate/Fitness.jpg' %}" alt="art" /></a> <a href="/zone/catg/Furniture/"><img src="{% static 'images/cate/Furniture.jpg' %}" alt="applica" /></a> <a href="/zone/catg/Garage and Garden/"><img src="{% static 'images/cate/Garage and Garden.jpg' %}" alt="cloth" /></a></div>  
-  <div class="fmenu_section">
-    <ul>
-      <li><a href="">TERMS OF USE</a></li>
-      <li><a href="">REACH US</a></li>
-    </ul>
-  </div>
+<div id="copy">
+<p><font color="#ffffff">Copyright (c) 2014 <a href="http://www.madclik.com/"><font color="#ffffff">Madclik.com.</font></a> All rights reserved</font></p>
 </div>
-<!--footer end-->
-</body>
+
+</div>
+</div>
+		
+	</body>
+
 </html>

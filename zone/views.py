@@ -501,6 +501,9 @@ def searchcaticon(request, item_cat):
 #  else:
     return HttpResponseRedirect("/")
 
-def contactus(request):
-  return render_to_response("ContactUs.html",context_instance=RequestContext(request))
+def reachus(request):
+  return render_to_response("reachus.html",context_instance=RequestContext(request))
 
+
+def termsofuse(request):
+  return render_to_response("Termsofuse.html",context_instance=RequestContext(request))
