@@ -110,7 +110,7 @@ def postsuccess(request):
     store_in_s3(filename, content)
     p = PhotoUrl(url="https://s3.amazonaws.com/remt-estu/" + filename, item_id=maintable_id)
     p.save()
-    return HttpResponseRedirect("/")
+    return HttpResponseRedirect("/zone/product/" + request.POST["prod_name"] + "/" + str(maintable_id) + "/")
 
 #        return HttpResposeRedirect
 #  return render_to_response("postsuccess.html", {"a":a, "b":b, "c":c}, context_instance=RequestContext(request))
