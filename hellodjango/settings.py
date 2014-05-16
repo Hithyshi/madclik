@@ -22,6 +22,12 @@ ACCESS_KEY = 'AKIAJH3OOHCZTBK2MK2A'
 PASS_KEY = 'MEs5DcP4VuU+LTAe7HGEfOSAfbAGTDKiZOwDWeHr'
 PROJECT_ROOT = os.path.realpath(os.path.dirname(__file__))
 
+#EMAIL_HOST = 'smtp.gmail.com'
+#EMAIL_HOST_USER = 'hithyshi11@gmail.com'
+#EMAIL_HOST_PASSWORD = 'Hith@gmail'
+#EMAIL_PORT = 587
+#EMAIL_USE_TLS = True
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 

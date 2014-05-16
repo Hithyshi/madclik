@@ -19,6 +19,8 @@ from datetime import date
 from datetime import datetime
 from django.utils import timezone
 from PIL import Image
+from PIL import ImageDraw, ImageFont
+#from django.core.mail import send_mail
 # Create your views here.
 
 def homepage(request):
@@ -102,6 +104,9 @@ def postsuccess(request):
 #real    content = file.read() 
     im = Image.open(file)
     im.thumbnail((400, 400))
+    draw = ImageDraw.Draw(im)
+    font = ImageFont.truetype("hellodjango/media/arial.ttf",25)
+    draw.text((10, 15), "www.madclik.com", (255,255,255), font=font)
     im.save("hellodjango/media/hetero.jpg")
     dfile = open("hellodjango/media/hetero.jpg", "rb")
     content = dfile.read()
@@ -110,6 +115,7 @@ def postsuccess(request):
     store_in_s3(filename, content)
     p = PhotoUrl(url="https://s3.amazonaws.com/remt-estu/" + filename, item_id=maintable_id)
     p.save()
+#    send_mail(
     return HttpResponseRedirect("/zone/product/" + request.POST["prod_name"] + "/" + str(maintable_id) + "/")
 
 #        return HttpResposeRedirect
