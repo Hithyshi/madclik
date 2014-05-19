@@ -4,7 +4,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>available for renting in Bangalore, classified rent ads in Bangalore (For Rent in Bangalore, Vehicle for rent  in Bangalore, books for rent in Bangalore, musical instruments in Bangalore,...)</title>
+{% for a1, b1, c1, d1, e1, f1, g1, h1, i1, j1, k1, l1, m1, n1, o1, p1, q1, r1 in temp6 %}
+<title>{{ d1 }} available for renting in Bangalore, classified rent ads in Bangalore (For Rent in Bangalore, Vehicle for rent  in Bangalore, books for rent in Bangalore, musical instruments in Bangalore,...)</title>
+{% endfor %}
 <link type="text/css" rel="stylesheet" href="{% static 'css/style3.css' %}">
 <link type="text/css" rel="stylesheet" href="{% static 'css/style2.css' %}">
 
@@ -98,9 +100,17 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
     <div class="f_right">
       <p class="pror_head"><strong>COST DETAILS</strong></p>
       <p class="pr_left">Price : </p>
-      <p class="pr_right">Rs. {{ f  }}</p>
+    {% if f == 0 %}
+      <p class="pr_right">On Request. Please call.</p>
+    {% else %}
+      <p class="pr_right">Rs. {{ f  }} / {{ g }}</p>
+    {% endif %}
       <p class="pr_left">Security Deposit :</p>
+    {% if h == 0 %}
+      <p class="pr_right">On Request. Please call.</p>
+    {% else %}
       <p class="pr_right">Rs. {{ h }}</p>
+    {% endif %}
     </div>
     <div class="clearall"></div>
   </div>
