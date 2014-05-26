@@ -21,7 +21,7 @@ from django.utils import timezone
 from PIL import Image
 from PIL import ImageDraw, ImageFont
 import operator
-#from django.core.mail import send_mail
+from django.core.mail import send_mail
 # Create your views here.
 
 def homepage(request):
@@ -119,15 +119,25 @@ def postsuccess(request):
     store_in_s3(filename, content)
     p = PhotoUrl(url="https://s3.amazonaws.com/remt-estu/" + filename, item_id=maintable_id)
     p.save()
-#    send_mail(
-    return HttpResponseRedirect("/zone/product/" + request.POST["prod_name"] + "/" + str(maintable_id) + "/")
+    to_email = []
+    to_email.append(request.POST["email22"])
+    msg = 'Dear Customer,\n\nThank You for posting your item on www.madclik.com online store.\nWe will keep you posted on interested parties to rent your stuff.\nYou can view your product details at http://www.madclik.com/zone/product/' + str(maintable_id) + '/' + '\n\nThank You!\nMadclik.com'
+    subject = 'your madclik post details on ' + request.POST["prod_name"]
+    send_mail(subject, msg, 'hithyshi11@gmail.com', to_email)
+    return HttpResponseRedirect("/zone/product/" + str(maintable_id) + "/")
 
 #        return HttpResposeRedirect
 #  return render_to_response("postsuccess.html", {"a":a, "b":b, "c":c}, context_instance=RequestContext(request))
   except KeyError:
 #        postitem = CustomerAdvertise2(item_cat=request.POST["select1"], item_subcat=request.POST["select2"], item_name=request.POST["prod_name"], item_desc=request.POST["description"], item_price=request.POST["text9"], item_price_per=request.POST["select10"], item_sec_dep=request.POST["text13"], item_tandc=request.POST["tandc"], item_owner_type=request.POST["select20"], item_owner_name=request.POST["text21"], item_owner_email=request.POST["email22"], item_mobile_num=request.POST["tel23"], state=request.POST["select24"], city=request.POST["select25"], locality=request.POST["select26"])
 #    postitem.save()
-    return HttpResponseRedirect("/zone/product/" + request.POST["prod_name"] + "/" + str(maintable_id) + "/")
+#    return HttpResponseRedirect("/zone/product/" + request.POST["prod_name"] + "/" + str(maintable_id) + "/")
+    to_email = []
+    to_email.append(request.POST["email22"])
+    msg = 'Dear Customer,\n\nThank You for posting your item on www.madclik.com online store.\nWe will keep you posted on interested parties to rent your stuff.\nYou can view your product details at http://www.madclik.com/zone/product/' + str(maintable_id) + '/' + '\n\nThank You!\nMadclik.com'
+    subject = 'your madclik post details on ' + request.POST["prod_name"]
+    send_mail(subject, msg, 'hithyshi11@gmail.com', to_email)
+    return HttpResponseRedirect("/zone/product/" + str(maintable_id) + "/")
 
 def searchfilter(request, search_txt):
   try:
@@ -497,9 +507,9 @@ def catgnoloca(request, search_catg):
   except KeyError:
     return HttpResponseRedirect("/")
 
-def productdisplay(request, product_title, product_id):
+def productdisplay(request, product_id):
   try:
-    filter_result = CustomerAdvertise2.objects.values_list('id', 'item_cat', 'item_subcat', 'item_name', 'item_desc', 'item_price', 'item_price_per', 'item_sec_dep', 'item_tandc', 'item_owner_type', 'item_owner_name', 'item_owner_email', 'item_mobile_num', 'state', 'city', 'locality', 'post_datetime').filter(item_name__exact=product_title, id__exact=product_id)
+    filter_result = CustomerAdvertise2.objects.values_list('id', 'item_cat', 'item_subcat', 'item_name', 'item_desc', 'item_price', 'item_price_per', 'item_sec_dep', 'item_tandc', 'item_owner_type', 'item_owner_name', 'item_owner_email', 'item_mobile_num', 'state', 'city', 'locality', 'post_datetime').filter(id__exact=product_id)
     temp6 = []
 
     for p in filter_result:
