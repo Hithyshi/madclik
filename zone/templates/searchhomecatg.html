@@ -6,7 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Search Display Page</title>
 <link type="text/css" rel="stylesheet" href="{% static 'css/style3.css' %}">
-<link type="text/css" rel="stylesheet" href="{% static 'css/style2.css' %}">
+<!-- <link type="text/css" rel="stylesheet" href="{% static 'css/style2.css' %}">   -->
+<link type="text/css" rel="stylesheet" href="{% static 'css/search_display.css' %}">
+<link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
 <script>
 function formSubmit1()
 {
@@ -45,7 +47,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 	</div>
 <!--header end-->
 <div class="main_section"  >
-  <h1 align="center" >Search Display Page</h1>
+  <h1 class="page_title" align="center" >View Search results</h1>
   <div class="filt_left">
     <div class="search_box"> <span>
      <form id="formsearch" method="post" action="/zone/search/"> 
@@ -272,11 +274,15 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
     
   </div>
   <!--product display start-->
-  <div class="search_refshow">
-    <div class="resu_right">
-      {% if length == 0 %}
-        <p>Oops! No results found for your search. Please try another search</p>
-      {% endif %}
+  {% if length == 0 %}
+    <div class="search_refshow">
+      <div class="resu_right">
+<!--      {% if length == 0 %} -->
+        <p>    Oops! No results found for your search. Please try another search</p>
+<!--      {% endif %}   -->
+      </div>
+    </div>
+  {% endif %}
       {% for a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r in temp5 %}
         <div class="search_refshow">
         <div class="resu_right">
@@ -290,16 +296,16 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
         {% endif %}
         </div>
         <div class="search_cnt"> <a href="/zone/product/{{ a }}/" target="_blank">
-          <h2>{{ d }}</h2>
+          <h2><font size = "3">{{ d }}</h2>
           </a>
           <p><span>{{ b }}</span>|<span>{{ p }}</span>|<span>{{ q }}</span></p>
         </div>
         </div>
         </div>
       {% endfor %}
-    </div>
+<!--    </div>  -->
     <!--product display end-->
-  </div>  
+<!--  </div>  -->
   <div class="clearall"></div>
 <!--footer start-->
 <div class="footer" align="center">

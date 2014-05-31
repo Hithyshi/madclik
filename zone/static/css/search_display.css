@@ -16,22 +16,33 @@ a {
 a:hover {
 	text-decoration:underline;
 }
+.bgimage {
+opacity: 0.8;
+    filter:alpha(opacity=80);
+ }
+.page_title {
+  font-family: 'Abril Fatface',cursive;
+  font-size:25px;
+ }
+ 
 .main_section_home {
 	height:480px;
 	margin:0 auto;
 	border:1px solid #d4d4d4;
 	background:url(../images/bg/background.gif) center top no-repeat;
-}
+        }
 .main_section {
 	width:924px;
 	margin:0 auto;
-	border:1px solid #d4d4d4;
+/*	border:1px solid #d4d4d4;*/
+    border:none;
 	margin-bottom:5px;
 	margin-top:5px;
-        background-color:#E5E4E2
-        font-family: 'Abril Fatface',cursive;
-}
+    background-color:#E5E4E2;
+    
+    }
 .filt_left {
+    
 	width:300px;
 	float:left;
 	border:1px solid #d4d4d4;
@@ -40,27 +51,38 @@ a:hover {
 	padding-top:10px;
 	padding-bottom:10px;
 	height:407px;
+    box-shadow: 5px 5px 2.5px #888888;
+    /*background-color:#98AFC7;*/
+    background-color:#E5E4E2;
 }
 .resu_right {
 	width:600px;
 	float:left;
 	border:1px solid #d4d4d4;
 	margin:5px;
-	/*box-shadow: 2px 2px 1px #d4d4d4;*/
+	box-shadow: 3px 3px 1px #888888;
 	margin-left:1px;
 	margin-right:1px;
+    font-family: 'Nobile' ;
+    font-size:17px;
 }
+
+.resu_right:hover {
+box-shadow: 3px 3px 1px #E5E4E2;
+  }
+ 
 .search_box {
 	margin:5px;
+    
 }
 .search_box .page_search {
 	padding:5px;
 	width:190px;
 	height:20px;
-	border:1px solid #d5d5d5;
+	/*border:1px solid #d5d5d5;*/
 }
 .search_box .page_search:hover {
-	border:1px solid #99CCCC;
+	/*border:1px solid #99CCCC;*/
 }
 .search_box .search_btn {
 	padding:5px;
@@ -70,19 +92,21 @@ a:hover {
 	cursor:pointer;
 	width:80px;
 	background:#0033FF;
-	box-shadow: 0 0 10px #fff inset;
+	/*box-shadow: 0 0 10px #fff inset;*/
 	color:#fff;
 	font-weight:600;
 }
-.search_box .search_btn:hover {
+/*.search_box .search_btn:hover {
 	background:#FF6600;
 	box-shadow: 0 0 10px #fff inset;
 	color:#fff;
 	font-weight:600;
-}
+}*/
 .search_box_ref {
 	margin:5px;
-}
+        font-family: 'Abril Fatface',cursive;
+        font-size:15px
+    }
 .search_box_ref .cate_search, .loca_search, .rent_search {
 	margin:5px;
 	width:275px;
@@ -101,7 +125,13 @@ a:hover {
 	font-weight:600;
 }
 .search_refshow {
+ float:right;
+  border:none;
 }
+.search_refshow :hover{
+ background-color: #9eb2be;
+  }
+
 .search_image {
 	width:100px;
 	float:left;
@@ -156,8 +186,6 @@ a:hover {
 	/*box-shadow: 2px 2px 1px #d4d4d4;*/
 	margin-left:1px;
 	margin-right:1px;
-        font-family: 'Abril Fatface',cursive;
-        font-size:15px
 }
 .product_left p img {
 	border-radius:10px;
@@ -216,8 +244,6 @@ a:hover {
 	height:25px;
 	color:#FFFFFF;
 	font-weight:600;
-        font-family: 'Abril Fatface',cursive;
-        font-size:15px
 }
 .prol_head strong {
 	background:#CC6633;
@@ -228,8 +254,6 @@ a:hover {
 	height:25px;
 	color:#FFFFFF;
 	font-weight:600;
-        font-family: 'Abril Fatface',cursive;
-        font-size:15px
 }
 .pror_head strong {
 	background:#CC6633;
@@ -237,24 +261,16 @@ a:hover {
 }
 .proldesc {
 	padding:5px !important;
-    height:78px;
-    overflow-y:scroll;
-    font-family: 'Abril Fatface',cursive;
-    font-size:15px
 }
 .pr_left {
 	width:135px;
 	float:left;
 	margin-left:5px;
 	font-weight:600;
-        font-family: 'Abril Fatface',cursive;
-        font-size:15px
 }
 .pr_right {
 	width:400px;
 	float:left;
-        font-family: 'Abril Fatface',cursive;
-        font-size:15px
 }
 .view_title {
 	border:1px solid #d4d4d4;
@@ -451,15 +467,15 @@ hr {
 	width:150px;
 	cursor:pointer;
 	background:#0000FF;
-	box-shadow: 0 0 10px #fff inset;
+	/*box-shadow: 0 0 10px #fff inset;*/
 	color:#fff;
 	font-weight:600;
 }
-.post_section input[type="submit"]:hover {
+/*.post_section input[type="submit"]:hover {
 	background:#FF6600;
 	color:#FFFFFF;
 	box-shadow: 0 0 10px #fff inset;
-}
+}*/
 .post_section input[type="text"], input[type="email"], input[type="tel"] {
 	border: 1px solid #999966;
 	border-radius: 3px;
@@ -529,6 +545,8 @@ hr {
 		
 		background: url(../images/newcate/logo.jpg) no-repeat; 
         }
+
+
 /*  
   .h_ads {
 	width:300px;

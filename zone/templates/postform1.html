@@ -6,8 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Search Display Page</title>
 <link type="text/css" rel="stylesheet" href="{% static 'css/style3.css' %}">
-<link type="text/css" rel="stylesheet" href="{% static 'css/style2.css' %}">
-
+<!-- <link type="text/css" rel="stylesheet" href="{% static 'css/style2.css' %}">  -->
+<link type="text/css" rel="stylesheet" href="{% static 'css/search_display.css' %}">
 
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
@@ -55,6 +55,9 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
   <div class="form_section">
     <form name="myForm" method="post" action="/zone/postsuccess/" enctype="multipart/form-data" >
       {% csrf_token %}   
+	  <br>
+	  <h3 align="center">Product Details</h3>
+	  <br> 
       <div class="post_section">
         <label>Chose a Category </label>
         <select onchange="favBrowser()" name="select1" id="myList">
@@ -95,7 +98,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 
       <div class="post_section">
         <label>Product Title *</label>
-        <input type="text" required="" value="" name="prod_name">
+        <input type="text" required="" value="" name="prod_name" placeholder = "Enter an attractive title" oninvalid = "setCustomValidity('Please enter an Product Title')" oninput="setCustomValidity('')">
       </div>
 <!--      <div class="post_section"> -->
 <!--        <label>Image </label> -->
@@ -133,10 +136,10 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 -->
 <div class="post_section_price"> <span>
         <label> Price</label>
-        <input type="text" required="" data-hint="" autocomplete="off" placeholder="" name="text9" maxlength="100" id="item9_text_1">
+        <input type="text" style = "width:50px" required="" data-hint="" autocomplete="off" placeholder="" name="text9" pattern="[0-9]{1,10}$" maxlength="10" id="item9_text_1" oninvalid = "setCustomValidity('Please enter only numbers')" oninput="setCustomValidity('')">
         </span> <span>
         <label>Per</label>
-        <select data-hint="" name="select10" id="item10_select_1">
+        <select data-hint="" name="select10" id="item10_select_1" style ="width:100px;">
           <option selected="" value="Hour" id="item10_0_option"> Hour </option>
           <option selected="" value="Day" id="item10_0_option"> Day </option>
           <option value="Week" id="item10_1_option"> Week </option>
@@ -148,14 +151,14 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 
       <div class="post_section">
         <label>Security Deposit</label>
-        <input type="number" data-hint="" autocomplete="off" placeholder="" name="text13" maxlength="254" size="5" id="item13_text_1">
+        <input type="text" data-hint="" autocomplete="off" required="" placeholder="Enter security money for your product" name="text13" pattern="[0-9]{1,10}$" maxlength="10" id="item13_text_1" oninvalid = "setCustomValidity('Please enter numbers, zero is accepted too')" oninput="setCustomValidity('')">
       </div>
       <hr />
       <h3 align="center">Renter Details </h3>
       <hr />
       <div class="post_section">
         <label>Renter Type </label>
-        <select data-hint="" name="select20" id="item20_select_1">
+        <select data-hint="" name="select20" id="item20_select_1" style ="width:280px;">
           <option selected="" value="Individual" id="item20_0_option"> Individual </option>
           <option value="Business" id="item20_1_option"> Business </option>
         </select>
@@ -170,23 +173,23 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
       </div>
       <div class="post_section">
         <label>Mobile Number </label>
-        <input type="tel" data-hint="" required="" name="tel23" id="item23_tel_1">
+        <input type="tel" data-hint="" required="" name="tel23" id="item23_tel_1" pattern="[0-9]{10,12}$" oninvalid = "setCustomValidity('Please enter only numbers')" oninput="setCustomValidity('')">
       </div>
       <div class="post_section">
         <label>State </label>
-        <select data-hint="" name="select24" id="item24_select_1">
-          <option selected="" value="Karnataka" id="item24_0_option"> karnataka </option>
+        <select data-hint="" name="select24" id="item24_select_1" style ="width:280px;">
+          <option selected="" value="Karnataka" id="item24_0_option"> Karnataka </option>
         </select>
       </div>
       <div class="post_section">
         <label>City </label>
-        <select data-hint="" name="select25" id="item25_select_1">
+        <select data-hint="" name="select25" id="item25_select_1" style ="width:280px;">
           <option selected="" value="Bangalore" id="item25_0_option"> Bangalore </option>
         </select>
       </div>
       <div class="post_section">
         <label>Locality </label>
-        <select data-hint="" name="select26" id="item26_select_1">
+        <select data-hint="" name="select26" id="item26_select_1" style ="width:280px;">
           <option></option>
           <option> Agaram </option>
           <option> Airport </option>
@@ -364,7 +367,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
     </form>
     </form>
   </div>
-</div>
+<div class="clearall"></div>
 <!--footer start-->
 <div class="footer" align="center">
 <br>
@@ -377,6 +380,6 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
   </div>
 </div>
 <!--footer end-->
-
+</div>
 </body>
 </html>

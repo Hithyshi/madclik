@@ -27,7 +27,14 @@ body
 	height: 0;
 	line-height: 0;
 }
-   
+.grad
+{
+height:200px;
+background: -webkit-linear-gradient(#4279AE, white); /* For Safari 5.1 to 6.0 */
+background: -o-linear-gradient(red, blue); /* For Opera 11.1 to 12.0 */
+background: -moz-linear-gradient(red, blue); /* For Firefox 3.6 to 15 */
+background: linear-gradient(#4279AE, white); /* Standard syntax (must be last) */
+}   
 
 .txt_millions, .txt_unwind
 {
@@ -438,6 +445,8 @@ hr
 		border:none;
         width:100%;
         height:20%;
+        background:#E5E4E2;
+        color:#E5E4E2;
       
 		
 	}
@@ -448,7 +457,8 @@ hr
 	    border:none;
         width:100%;
         height:8%;
-		
+        background:#E5E4E2;
+        color:#E5E4E2;	
 	}
 #top_3rd
 	{
@@ -457,7 +467,8 @@ hr
 		border:none;
         width:100%;
         height:25%;
-      
+        background:#E5E4E2;
+        color:#E5E4E2;      
 		
 	}
 
@@ -468,7 +479,8 @@ hr
 		border:none;
         width:100%;
         height:31%;   
-      
+        background:#E5E4E2;
+        color:#E5E4E2;      
 	       
 	}
      
@@ -484,7 +496,9 @@ hr
 
     
  }
-
+ .header{
+ position::fixed;
+  }
 
 
 .h_ads {
@@ -1686,7 +1700,6 @@ margin-top:5%
 		animation-play-state: running;
 	}
 /* ANIMATIONS ends*/
-
 
 
 
