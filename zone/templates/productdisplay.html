@@ -7,6 +7,7 @@
 {% for a1, b1, c1, d1, e1, f1, g1, h1, i1, j1, k1, l1, m1, n1, o1, p1, q1, r1 in temp6 %}
 <title>{{ d1 }} available for renting in Bangalore, classified rent ads in Bangalore (For Rent in Bangalore, Vehicle for rent  in Bangalore, books for rent in Bangalore, musical instruments in Bangalore,...)</title>
 {% endfor %}
+<link href="\static\images\favicon.jpg" rel="shortcut icon apple-touch-icon"/>
 <link type="text/css" rel="stylesheet" href="{% static 'css/style3.css' %}">
 <link type="text/css" rel="stylesheet" href="{% static 'css/style2.css' %}">
 
@@ -42,7 +43,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 	</div>
 <!--header end-->
 <div class="main_section"  >
-  <h1 align="center">Product Display Page</h1>
+  <h1 align="center"><font size="4">Product display</font></h1>
   {% for a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r in temp6 %}
     {% if r %}
       {% for document in r %}
@@ -57,7 +58,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
     {% endif %}
   <!--product display start-->
   <div class="product_right">
-    <h3>Category: {{ b }}</h3>
+    <h3><font size="3"> {{ b }}</font></h3>
     <div>
       <div class="view_title">
         <h2>{{ d  }}</h2>
@@ -76,9 +77,11 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
         <div style="float:left;">
           <p class="pro_firstp">Mobile:</p>
           <p class="pro_lastp" ><b>{{ m }}</b></p>
-          <br />
+          <br>
+          <div style="float:left;">
           <p class="pro_firstp" >Email:</p>
           <p class="pro_lastp" ><b>{{ l }}</b></p>
+          </div>
           <div class="clearall"></div>
         </div>
         <div class="clearall"></div>

@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Madclik Postad page</title>
+<link href="\static\images\favicon.jpg" rel="shortcut icon apple-touch-icon"/>
 <link type="text/css" rel="stylesheet" href="{% static 'css/style3.css' %}">
 <!-- <link type="text/css" rel="stylesheet" href="{% static 'css/style2.css' %}">  -->
 <link type="text/css" rel="stylesheet" href="{% static 'css/search_display.css' %}">
@@ -97,8 +98,8 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 </div>
 
       <div class="post_section">
-        <label>Product Title *</label>
-        <input type="text" required="" value="" name="prod_name" placeholder = "Enter an attractive title" oninvalid = "setCustomValidity('Please enter an Product Title')" oninput="setCustomValidity('')">
+        <label>Product Title </label>
+        <input type="text" required="" value="" name="prod_name" placeholder = "Enter an attractive title" oninvalid = "setCustomValidity('Please enter an Product Title')" oninput="setCustomValidity('')" maxlength="40">
       </div>
 <!--      <div class="post_section"> -->
 <!--        <label>Image </label> -->
@@ -114,7 +115,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
       </div>
 
       <div class="post_section">
-        <label> Description *</label>
+        <label> Description </label>
         <textarea rows="5" cols="50" name="description"></textarea>
       </div>
 <!--
